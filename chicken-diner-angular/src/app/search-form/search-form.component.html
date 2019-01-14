@@ -1,9 +1,9 @@
-<div class='d-flex'>
-    <select [(ngModel)]='shard'>
-        <option value='psn'>PS4</option>
+<div class='d-flex flex-wrap justify-content-end flex-md-nowrap'>
+    <input [(ngModel)]='playerName' type="text" class='order-md-1 player-name ml-1 form-control' placeholder='Search for a player' />
+    <select class='custom-select order-md-0' [(ngModel)]='shard'>
+        <option value='psn' selected >PS4</option>
         <option value='xbox'>Xbox One</option>
         <option value='steam'>Steam</option>
     </select>
-    <input [(ngModel)]='playerName' type="text" class='form-control' placeholder='Search for a player' />
-    <button (click)='onPlayerSearch(shard, playerName)'class='btn btn-light'>Go!</button>
+    <button (click)='onPlayerSearch(shard, playerName)'class='btn btn-light ml-1 order-sm-3' role='button' >Go!</button>
 </div>

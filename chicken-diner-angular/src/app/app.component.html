@@ -1,9 +1,89 @@
-<app-header>
-    <app-search-form (playerSearch)='onPlayerStartSearch($event)'></app-search-form>
-</app-header>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
+<div class='main'>
+    <app-header>
+        <app-search-form (playerSearch)='onPlayerStartSearch($event)'></app-search-form>
+    </app-header>
+    <div class="container pt-3 mb-3">
+        <p class='text-light font-weight-light font-italic text-center mx-auto' *ngIf='!playerData'> Enter a Player ID and Platform above</p>
+        <div *ngIf='playerData'>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="jumbotron bg-secondary">
+                        <h3 class='display-4'>{{ playerData.PlayerName }}</h3>
+                        <hr>
+                        <div class='row'>
+                            <section class='player-stats col-sm-6'>
+                                <h5 class='mb-0'>Recent Stats</h5>
+                                <p class='text-muted lead'>out of {{playerData.TotalMatchesPlayed}} recent matches<p>
+                                <hr>
+                                <p>Solo K/D: {{ playerData.generalStats.soloKD }}</p>
+                                <p>Duos K/D: {{ playerData.generalStats.duoKD }}</p>
+                                <p>Squad K/D: {{ playerData.generalStats.squadKD }}</p>
+                                <hr>
+                                <h5>Recent Matches</h5>
+                                <div *ngFor='let match of playerData.prevMatchList'><p>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p><p class='text-muted'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} T: {{ match.attributes.createdAt }}</p></div>
+                            </section>
+                            <section class='col-sm-6'>
+                                <h5>Previous Match Stats</h5>
+                                <p>Map: {{ playerData.prevMatch.map }}</p>
+                                <p>Game Mode: {{ playerData.prevMatch.gameMode }}</p>
+                                <p>Match Date: {{ playerData.prevMatch.matchTime }}</p>
+                                <p>Win Position: {{ playerData.prevMatch.matchStats.winPlace }}</p>
+                                <p>Survival Time: {{ playerData.prevMatch.timeSurvived }}</p>
+                                <p>Accuracy: {{ playerData.prevMatch.accuracy }}%</p>
+                                <p>Kills: {{ playerData.prevMatch.matchStats.kills }}</p>
+                                <p>Knockdowns: {{ playerData.prevMatch.matchStats.DBNOs }}</p>
+                                <p>Assists: {{ playerData.prevMatch.matchStats.assists }}</p>
+                                <p>Damage Dealt: {{ playerData.prevMatch.matchStats.damageDealt }}</p>
+                                <section *ngIf='playerData.prevMatch.teamMates.length > 0'>
+                                    <p>Teammates: </p>
+                                    <ul>
+                                        <li *ngFor='let teamMate of playerData.prevMatch.teamMates'><p>{{ teamMate }}</p></li>
+                                    </ul>
+                                </section>
+                                <section *ngIf='playerData.prevMatch.sortedHits.length > 0'>
+                                    <p>Enemies Hit: </p>
+                                    <ul>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedHits'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p></li>
+                                    </ul>
+                                </section>
+                                <section *ngIf='playerData.prevMatch.sortedKills.length > 0'>
+                                    <p>Enemies Killed: </p>
+                                    <ul>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedKills'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p></li>
+                                    </ul>
+                                </section>
+                                <section *ngIf='playerData.prevMatch.sortedKnocks.length > 0'>
+                                    <p>Enemies Knocked: </p>
+                                    <ul>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedKnocks'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p></li>
+                                    </ul>
+                                </section>
+                                <section *ngIf='playerData.prevMatch.sortedAttackers.length > 0'>
+                                    <p> Hit You: </p>
+                                    <ul>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedAttackers'><p>Team ID: {{ hit.attacker.teamId }} - {{ hit.attacker.name }}</p></li>
+                                    </ul>
+                                </section>
+                                <section *ngIf='playerData.prevMatch.sortedKnocker.length > 0'>
+                                    <p> Knocked You: </p>
+                                    <ul>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedKnocker'><p>Team ID: {{ hit.teamId }} - {{ hit.name }} - {{ hit.weapon }} - {{ hit.damageReason }} - Distance: {{ hit.distance }}</p></li>
+                                    </ul>
+                                </section>
+                                <section *ngIf='playerData.prevMatch.killer.name'>
+                                    <p> Killed You: </p>
+                                    <p>{{ playerData.prevMatch.killer.teamId }} - {{ playerData.prevMatch.killer.name }}</p>
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class='footer container-flex mt-3 fixed-bottom'>
+        <footer class='bg-dark d-flex align-items-center align-self-end'> 
+            <p class='text-light mx-3'>&#169; 2019 Jose Stricklin</p>
+        </footer>        
     </div>
 </div>
