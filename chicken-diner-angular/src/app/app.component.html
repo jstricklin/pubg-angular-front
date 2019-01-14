@@ -13,14 +13,14 @@
                         <div class='row'>
                             <section class='player-stats col-sm-6'>
                                 <h5 class='mb-0'>Recent Stats</h5>
-                                <p class='text-muted lead'>out of {{playerData.TotalMatchesPlayed}} recent matches<p>
+                                <p class='lead'>out of {{playerData.TotalMatchesPlayed}} recent matches<p>
                                 <hr>
                                 <p>Solo K/D: {{ playerData.generalStats.soloKD }}</p>
                                 <p>Duos K/D: {{ playerData.generalStats.duoKD }}</p>
                                 <p>Squad K/D: {{ playerData.generalStats.squadKD }}</p>
                                 <hr>
                                 <h5>Recent Matches</h5>
-                                <div *ngFor='let match of playerData.prevMatchList'><p>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p><p class='text-muted'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} T: {{ match.attributes.createdAt }}</p></div>
+                                <div *ngFor='let match of playerData.prevMatchList'><p>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p><p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} T: {{ match.attributes.createdAt }}</p></div>
                             </section>
                             <section class='col-sm-6'>
                                 <h5>Previous Match Stats</h5>
