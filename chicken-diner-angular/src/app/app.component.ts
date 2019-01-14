@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment as env } from '../environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -9,10 +9,16 @@ import { environment } from '../environments/environment';
 export class AppComponent {
     constructor() {  }
 
+    playerData: {};
     title = 'chicken-diner-angular';
 
     onPlayerStartSearch(data) {
+        if (data.playerName === '') { return; }
         console.log('onPlayerStartSearch', data);
-        console.log('env', environment);
+        // console.log('env', env.API_URL);
+        fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
+            .then(res => res.json())
+            .then(json => this.playerData = json)
+            .then(json => console.log('player data', this.playerData));
     }
 }
