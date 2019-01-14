@@ -1,0 +1,9 @@
+<div class='d-flex'>
+    <select [(ngModel)]='shard'>
+        <option value='psn'>PS4</option>
+        <option value='xbox'>Xbox One</option>
+        <option value='steam'>Steam</option>
+    </select>
+    <input [(ngModel)]='playerName' type="text" class='form-control' placeholder='Search for a player' />
+    <button (click)='onPlayerSearch(shard, playerName)'class='btn btn-light'>Go!</button>
+</div>
