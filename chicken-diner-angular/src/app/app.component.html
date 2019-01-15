@@ -8,17 +8,21 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="jumbotron bg-secondary">
-                        <h3 class='display-4'>{{ playerData.PlayerName }}</h3>
-                        <hr>
-                        <div class='row'>
-                            <section class='player-stats col-sm-6'>
-                                <h5 class='mb-0'>Recent Stats</h5>
+                        <div class="d-flex">
+                            <h3 class='display-4'>{{ playerData.PlayerName }}</h3>
+                            <aside class='ml-5'>
+                                <!-- <h5 class='mb-0'>Recent Stats</h5> -->
                                 <p class='lead'>out of {{playerData.TotalMatchesPlayed}} recent matches<p>
-                                <hr>
+                                <!-- <hr> -->
                                 <p>Solo K/D: {{ playerData.generalStats.soloKD }}</p>
                                 <p>Duos K/D: {{ playerData.generalStats.duoKD }}</p>
                                 <p>Squad K/D: {{ playerData.generalStats.squadKD }}</p>
-                                <hr>
+                            </aside>
+                        </div>
+                        <hr>
+                        <div class='row'>
+                            <section class='player-stats col-sm-6'>
+                                <!-- <hr> -->
                                 <h5>Recent Matches</h5>
                                 <div *ngFor='let match of playerData.prevMatchList'><p>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p><p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} T: {{ match.attributes.createdAt }}</p></div>
                             </section>
