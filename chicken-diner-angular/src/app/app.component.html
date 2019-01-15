@@ -33,7 +33,7 @@
                                 <p>Kills: {{ playerData.prevMatch.matchStats.kills }}</p>
                                 <p>Knockdowns: {{ playerData.prevMatch.matchStats.DBNOs }}</p>
                                 <p>Assists: {{ playerData.prevMatch.matchStats.assists }}</p>
-                                <p>Damage Dealt: {{ playerData.prevMatch.matchStats.damageDealt }}</p>
+                                <p>Damage Dealt: {{ playerData.prevMatch.matchStats.damageDealt.toFixed(2) }}</p>
                                 <section *ngIf='playerData.prevMatch.teamMates.length > 0'>
                                     <p>Teammates: </p>
                                     <ul>
@@ -43,25 +43,25 @@
                                 <section *ngIf='playerData.prevMatch.sortedHits.length > 0'>
                                     <p>Enemies Hit: </p>
                                     <ul>
-                                        <li *ngFor='let hit of playerData.prevMatch.sortedHits'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p></li>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedHits'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p> <p *ngFor='let weapon of hit.weapons'>{{weapon.name}} - {{weapon.totalDmg.toFixed(2)}}</p></li>
                                     </ul>
                                 </section>
                                 <section *ngIf='playerData.prevMatch.sortedKills.length > 0'>
                                     <p>Enemies Killed: </p>
                                     <ul>
-                                        <li *ngFor='let hit of playerData.prevMatch.sortedKills'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p></li>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedKills'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }} - {{ hit.weapon }} - {{ hit.damageReason }}</p></li>
                                     </ul>
                                 </section>
                                 <section *ngIf='playerData.prevMatch.sortedKnocks.length > 0'>
                                     <p>Enemies Knocked: </p>
                                     <ul>
-                                        <li *ngFor='let hit of playerData.prevMatch.sortedKnocks'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }}</p></li>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedKnocks'><p>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }} - {{ hit.weapon }} - {{ hit.damageReason }}</p></li>
                                     </ul>
                                 </section>
                                 <section *ngIf='playerData.prevMatch.sortedAttackers.length > 0'>
                                     <p> Hit You: </p>
                                     <ul>
-                                        <li *ngFor='let hit of playerData.prevMatch.sortedAttackers'><p>Team ID: {{ hit.attacker.teamId }} - {{ hit.attacker.name }}</p></li>
+                                        <li *ngFor='let hit of playerData.prevMatch.sortedAttackers'><p>Team ID: {{ hit.attacker.teamId }} - {{ hit.attacker.name }}</p><p *ngFor='let weapon of hit.weapons'>{{weapon.name}} - {{weapon.totalDmg.toFixed(2)}}</p></li>
                                     </ul>
                                 </section>
                                 <section *ngIf='playerData.prevMatch.sortedKnocker.length > 0'>
@@ -72,7 +72,7 @@
                                 </section>
                                 <section *ngIf='playerData.prevMatch.killer.name'>
                                     <p> Killed You: </p>
-                                    <p>{{ playerData.prevMatch.killer.teamId }} - {{ playerData.prevMatch.killer.name }}</p>
+                                    <p>{{ playerData.prevMatch.killer.teamId }} - {{ playerData.prevMatch.killer.name }} - {{playerData.prevMatch.killer.weapon}} - {{playerData.prevMatch.killer.damageReason}}</p>
                                 </section>
                             </section>
                         </div>
