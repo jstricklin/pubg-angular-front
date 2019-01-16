@@ -13,14 +13,17 @@ export class AppComponent {
     playerData: {};
     title = 'chicken-diner-angular';
     time = moment;
+    playerName: string = '';
+    matchId: string = '';
 
     onPlayerStartSearch(data) {
         if (data.playerName === '') { return; }
+        this.playerName = data.playerName;
         console.log('onPlayerStartSearch', data);
         // console.log('env', env.API_URL);
         fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
             .then(res => res.json())
             .then(json => this.playerData = json)
-            .then(json => console.log('player data', this.playerData));
+            .then(json => { console.log('player data', this.playerData); this.matchId = json.prevMatch.matchId; });
     }
 }
