@@ -14,7 +14,7 @@ export class SearchFormComponent implements OnInit {
 
     @Output() playerSearch = new EventEmitter<{shard: string, playerName: string}>();
 
-    onPlayerSearch(shard, playerName) {
+    onPlayerSearch(shard: string, playerName: string) {
         this.playerSearch.emit({
             shard: shard,
             playerName: playerName

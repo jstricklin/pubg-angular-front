@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { HeaderComponent } from './header/header.component';
+import { PlayerPageComponent } from './player-page/player-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    PlayerPageComponent
   ],
   imports: [
     BrowserModule,

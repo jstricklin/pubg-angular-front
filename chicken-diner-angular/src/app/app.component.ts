@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { environment as env } from '../environments/environment';
-import * as moment from 'moment';
 
 @Component({
     selector: 'app-root',
@@ -12,9 +11,9 @@ export class AppComponent {
 
     playerData: {};
     title = 'chicken-diner-angular';
-    time = moment;
     playerName: string = '';
     matchId: string = '';
+    shard: string = '';
 
     onPlayerStartSearch(data) {
         if (data.playerName === '') { return; }
@@ -23,7 +22,8 @@ export class AppComponent {
         // console.log('env', env.API_URL);
         fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
             .then(res => res.json())
-            .then(json => this.playerData = json)
-            .then(json => { console.log('player data', this.playerData); this.matchId = json.prevMatch.matchId; });
+            .then(json => { this.playerData = json; this.matchId = json.prevMatch.matchId; })
+            .then(json => { console.log('player data', this.playerData);  })
+            .catch(err => alert('No player data found!'));
     }
 }
