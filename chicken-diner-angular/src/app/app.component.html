@@ -24,15 +24,15 @@
                             <section class='player-stats col-sm-6'>
                                 <!-- <hr> -->
                                 <h5>Recent Matches</h5>
-                                <div *ngFor='let match of playerData.prevMatchList'><p>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p><p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} T: {{ match.attributes.createdAt }}</p></div>
+                                <div *ngFor='let match of playerData.prevMatchList'><p>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p><p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} T: {{ time(match.attributes.createdAt).format('LLL') }}</p></div>
                             </section>
                             <section class='col-sm-6'>
                                 <h5>Previous Match Stats</h5>
                                 <p>Map: {{ playerData.prevMatch.map }}</p>
                                 <p>Game Mode: {{ playerData.prevMatch.gameMode }}</p>
-                                <p>Match Date: {{ playerData.prevMatch.matchTime }}</p>
+                                <p>Match Date: {{ time(playerData.prevMatch.matchTime).format('LLL') }}</p>
                                 <p>Win Position: {{ playerData.prevMatch.matchStats.winPlace }}</p>
-                                <p>Survival Time: {{ playerData.prevMatch.matchStats.timeSurvived }}</p>
+                                <p>Survival Time: {{ time.duration(playerData.prevMatch.matchStats.timeSurvived, 'seconds').humanize() }} {{ time.duration(playerData.prevMatch.matchStats.timeSurvived, 'seconds').seconds() }} seconds</p>
                                 <p>Accuracy: {{ playerData.prevMatch.accuracy }}%</p>
                                 <p>Kills: {{ playerData.prevMatch.matchStats.kills }}</p>
                                 <p>Knockdowns: {{ playerData.prevMatch.matchStats.DBNOs }}</p>

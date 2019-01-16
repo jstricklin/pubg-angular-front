@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment as env } from '../environments/environment';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent {
 
     playerData: {};
     title = 'chicken-diner-angular';
+    time = moment;
 
     onPlayerStartSearch(data) {
         if (data.playerName === '') { return; }
