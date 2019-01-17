@@ -7,7 +7,7 @@
         <div *ngIf='playerData'>
             <div class="row">
                 <div class="col-sm-12">
-                    <app-player-page (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
+                    <app-player-page (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
                 </div>
             </div>
         </div>
