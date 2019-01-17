@@ -1,11 +1,11 @@
 <form action='#' ng-submit='onPlayerSearch(shard, playerName)' name='player-search'>    
-    <div class='d-flex flex-wrap justify-content-end flex-md-nowrap'>
-        <input [(ngModel)]='playerName'type="text" name='name-input' class='order-md-1 player-name ml-1 form-control' placeholder='Search for a player' />
-        <select class='custom-select order-md-0' [(ngModel)]='shard' name='shard-input'>
+    <div class='d-flex flex-wrap justify-content-center flex-md-nowrap'>
+        <input [(ngModel)]='playerName'type="text" name='name-input' class='order-md-1 player-name ml-1 form-control my-1' placeholder='Search for a player' />
+        <select class='custom-select order-md-0 my-1' [(ngModel)]='shard' name='shard-input'>
             <option value='psn' selected >PS4</option>
             <option value='xbox'>Xbox One</option>
             <option value='steam'>Steam</option>
         </select>
-        <button (click)='onPlayerSearch(shard, playerName)'class='btn btn-light ml-1 order-sm-3' role='button' >Go!</button>
+        <button (click)='onPlayerSearch(shard, playerName)'class='btn btn-light ml-1 order-sm-3 my-1' role='button' >Go!</button>
     </div>
 </form>
