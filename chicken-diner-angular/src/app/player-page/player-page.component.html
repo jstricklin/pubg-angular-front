@@ -12,7 +12,7 @@
     </div>
     <hr>
     <div class='row'>
-        <section class='col-sm-6 d-flex justify-content-center mb-5'>
+        <section class='col-sm-6 d-flex justify-content-center align-items-start mb-5'>
             <div class='match-stats bg-dark text-light card'>
                 <div class='card-header p-3'>
                     <h5>Previous Match Stats</h5>
@@ -76,13 +76,13 @@
                 <div class="card-header p-3">
                     <h5 class='card-title'>Recent Matches</h5>
                 </div>
-                <div class='card-body p-2' *ngFor='let match of playerData.prevMatchList'>
+                <section class='card-text p-2' *ngFor='let match of playerData.prevMatchList'>
                     <span class='player-link' (click)='onMatchSearch(match.attributes.shardId, playerData.PlayerName, match.id )'>
                         <strong>{{ time(match.attributes.createdAt).format('LLL') }}</strong>
                         <p class='font-italic'>{{ match.attributes.mapName }} - {{ match.attributes.gameMode }}</p>
                         <p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} </p>
                     </span>
-                </div>
+                </section>
             </div>
         </section>
     </div>
