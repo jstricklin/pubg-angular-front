@@ -1,6 +1,6 @@
 <div *ngIf='playerData' class="jumbotron bg-secondary">
     <div class="d-flex flex-column flex-sm-row player-title">
-        <h3 class='display-4 mx-5'>{{ playerData.PlayerName }}</h3>
+        <h3 class='display-4 mr-5'>{{ playerData.PlayerName }}</h3>
         <aside>
             <!-- <h5 class='mb-0'>Recent Stats</h5> -->
             <p class='lead'>out of {{playerData.TotalMatchesPlayed}} recent matches<p>
@@ -12,12 +12,12 @@
     </div>
     <hr>
     <div class='row'>
-        <section class='col-sm-6 d-flex justify-content-center'>
+        <section class='col-sm-6 d-flex justify-content-center mb-3'>
             <div>
                 <h5>Previous Match Stats</h5>
+                <strong>{{ time(playerData.prevMatch.matchTime).format('LLL') }}</strong>
                 <p>Map: {{ playerData.prevMatch.map }}</p>
                 <p>Game Mode: {{ playerData.prevMatch.gameMode }}</p>
-                <p>Match Date: {{ time(playerData.prevMatch.matchTime).format('LLL') }}</p>
                 <p>Win Position: {{ playerData.prevMatch.matchStats.winPlace }}</p>
                 <p>Survival Time: {{ time.duration(playerData.prevMatch.matchStats.timeSurvived, 'seconds').humanize() }} {{ time.duration(playerData.prevMatch.matchStats.timeSurvived, 'seconds').seconds() }} seconds</p>
                 <p>Accuracy: {{ playerData.prevMatch.accuracy }}%</p>
@@ -40,7 +40,7 @@
                 <section *ngIf='playerData.prevMatch.sortedKills.length > 0'>
                     <p>Enemies Killed: </p>
                     <ul>
-                        <li *ngFor='let hit of playerData.prevMatch.sortedKills'><p (click)='onPlayerSearch(playerData.prevMatch.shard, hit.victim.name)' class='player-link'>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }} </p><p> {{ hit.weapon }} - {{ hit.damageReason }}</p></li>
+                        <li *ngFor='let hit of playerData.prevMatch.sortedKills'><p (click)='onPlayerSearch(playerData.prevMatch.shard, hit.victim.name)' class='player-link'>Team ID: {{ hit.victim.teamId }} - {{ hit.victim.name }} </p><p> {{ hit.weapon }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li>
                     </ul>
                 </section>
                 <section *ngIf='playerData.prevMatch.sortedKnocks.length > 0'>
