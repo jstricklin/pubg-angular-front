@@ -44,7 +44,7 @@
                 <section *ngIf='playerData.prevMatch.sortedKnocks.length > 0'>
                     <p>Enemies Knocked: </p>
                     <ul>
-                        <li *ngFor='let hit of playerData.prevMatch.sortedKnocks'><p (click)='onPlayerSearch(playerData.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-warning'>{{ hit.victim.name }}</strong> - Team ID: {{ hit.victim.teamId }}</p><p> {{ parseWeaponName[hit.weapon] }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li>
+                        <li *ngFor='let hit of playerData.prevMatch.sortedKnocks'><p (click)='onPlayerSearch(playerData.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-warning'>{{ hit.victim.name }}</strong> - Team ID: {{ hit.victim.teamId }}</p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li>
                     </ul>
                 </section>
                 <section *ngIf='playerData.prevMatch.sortedKills.length > 0'>
@@ -81,8 +81,8 @@
                     <h5 class='card-title display-4'>Recent Matches</h5>
                 </div>
                 <section>
-                    <div class='card-text' *ngFor='let match of playerData.prevMatchList'>
-                        <span class='player-link' (click)='onMatchSearch(match.attributes.shardId, playerData.PlayerName, match.id )'>
+                    <div class='card-text list-group list-group-flush' *ngFor='let match of playerData.prevMatchList'>
+                        <span class='list-group-item bg-secondary list-group-item-dark list-group-item-action player-link' (click)='onMatchSearch(match.attributes.shardId, playerData.PlayerName, match.id )'>
                             <strong>{{ time(match.attributes.createdAt).format('LLL') }}</strong>
                             <p class='font-italic'>{{ parseMapName.default[match.attributes.mapName] }} - {{ match.attributes.gameMode }}</p>
                             <p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} </p>

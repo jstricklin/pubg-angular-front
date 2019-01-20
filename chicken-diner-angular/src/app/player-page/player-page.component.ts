@@ -13,7 +13,7 @@ import * as dmgCategory from '../../assets/utils/dictionaries/telemetry/damageTy
 })
 export class PlayerPageComponent implements OnInit {
 
-    constructor() { console.log(dmgCauserName); }
+    constructor() {  }
 
     parseMapName = mapName;
     parseWeaponName = dmgCauserName;
@@ -35,7 +35,7 @@ export class PlayerPageComponent implements OnInit {
             playerName: name,
             matchId: matchId,
         });
-        console.log(shardName, name, matchId);
+        // console.log(shardName, name, matchId);
     }
 
   ngOnInit() {
