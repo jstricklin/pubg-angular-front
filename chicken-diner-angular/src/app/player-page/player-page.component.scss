@@ -11,8 +11,11 @@ h1 {
 .title {
     font-weight: 300;
 }
-.section-title {
+.match-details .section-title {
     margin-bottom: 5px;
+    font-size: 11pt;
+    font-weight: bold;
+    text-decoration: underline;
 }
 p {
     margin: 0;
