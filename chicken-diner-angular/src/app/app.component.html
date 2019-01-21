@@ -1,18 +1,16 @@
-<div class='main'>
-    <app-header>
-        <app-search-form (playerSearch)='onPlayerStartSearch($event)'></app-search-form>
-    </app-header>
-    <div class="container pt-3 mb-3">
+<div class='main d-flex justify-content-center flex-wrap container-flex'>
+    <div class='header-wrapper fixed-top'>
+        <app-header>
+            <app-search-form (playerSearch)='onPlayerStartSearch($event)'></app-search-form>
+        </app-header>
+    </div>
+    <div class="body container-flex pt-3 mb-3">
         <p class='text-light font-weight-light font-italic text-center mx-auto' *ngIf='!playerData'> Enter a Player ID and Platform above</p>
-        <div *ngIf='playerData'>
-            <div class="row">
-                <div class="col-sm-12">
-                    <app-player-page (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
-                </div>
-            </div>
+        <div *ngIf='playerData' class='mx-auto col-sm-10'>
+            <app-player-page (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
         </div>
     </div>
-    <div class='footer container-flex mt-3 fixed-bottom'>
+    <div class='footer align-self-end mt-3'>
         <footer class='bg-dark d-flex align-items-center justify-content-between'> 
             <p class='text-light mx-3'>&#169; 2019 Jose Stricklin</p>
             <p class='text-light mx-3 font-italic'>This web app is under currently under construction.</p>

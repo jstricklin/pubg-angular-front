@@ -1,24 +1,42 @@
 section {
-    padding: 1em;
+    // padding: 1em;
+}
+.row {
+    width: 100%;
+}
+h1 {
+    margin: 0;
+}
+.title {
+    font-weight: 300;
+}
+.section-title {
+    margin-bottom: 5px;
 }
 p {
     margin: 0;
-    font-size: 11pt;
+    font-size: 10pt;
 }
 strong {
-    font-size: 11pt;
+    font-size: 10pt;
+    font-weight: 600;
 }
 ul {
+    padding-left: 0;
     padding-bottom: 0;
 }
 li {
     margin: 0;
+    list-style: none;
+}
+.match-header {
+    
 }
 .player-link {
     cursor: pointer;
 }
 .match-stats {
-
+    width: 100%;
 }
 .recent-matches {
     

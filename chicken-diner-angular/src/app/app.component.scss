@@ -1,23 +1,35 @@
 .main {
     min-height: 100vh;
-    height: 100%;
+    // background: black;
     background: black;
+}
+// .header {
+//     width: 100%;
+// }
+.header-wrapper {
+    width: 100%;
+}
+.body {
+    margin: 0;
+    margin-top: 150px;
 }
 p {
     margin: 0;
-    font-size: 10pt;
+    font-size: 9pt;
 }
 li {
     margin: 0;
 }
 .footer{
-    // position: absolute;
+    position: relative;
     // bottom: 0;
+    clear: both;
     width: 100%;
     footer {
         height: 35px;
+        margin-top:-35px;
         p {
-            font-size: 10pt;
+            font-size:9pt;
             font-weight: 200;
         }
     }
