@@ -14,6 +14,7 @@ export class AppComponent {
     playerName: string = '';
     matchId: string = '';
     shard: string = '';
+    email = env.EMAIL_ADDY;
 
     onPlayerStartSearch(data) {
         if (data.playerName === '') { return; }
