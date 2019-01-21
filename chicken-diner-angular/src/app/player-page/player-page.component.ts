@@ -5,6 +5,7 @@ import * as mapName from '../../assets/utils/dictionaries/telemetry/mapName.json
 import * as itemId from '../../assets/utils/dictionaries/telemetry/item/itemId.json';
 import * as dmgCategory from '../../assets/utils/dictionaries/telemetry/damageTypeCategory.json';
 // import { Events } from '../shared/search-event.model';
+const miramarBG = '../../assets/images/miramar-bg-01.png';
 
 @Component({
   selector: 'app-player-page',

@@ -30,6 +30,11 @@ li {
     margin: 0;
     list-style: none;
 }
+.player-header {
+    background-image: linear-gradient(to right, rgba(0,0,0, 0.8), rgba(0,0,0, 0.4)), url("../../assets/images/miramar-bg-01.png");
+    background-size: cover;
+    background-position: bottom;
+}
 .match-header {
     
 }
