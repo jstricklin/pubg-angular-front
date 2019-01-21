@@ -31,7 +31,7 @@
                     </ul>
                 </section>
                 <section class='mb-2' *ngIf='playerData.prevMatch.sortedHits.length > 0'>
-                    <p class='section-title'>Enemies Hit: </p>
+                    <p class='section-title'>Enemies Hit </p>
                     <ul>
                         <li *ngFor='let hit of playerData.prevMatch.sortedHits'><p (click)='onPlayerSearch(playerData.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-muted'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }}</p> <p *ngFor='let weapon of hit.weapons'>{{parseWeaponName.default[weapon.name]}} - {{weapon.totalDmg.toFixed(2)}}</p></li>
                     </ul>
@@ -80,6 +80,12 @@
                     <p class='section-title'>Knockdowns <br /> <strong class='text-muted'> {{ playerData.prevMatch.matchStats.DBNOs }}</strong></p>
                     <p class='section-title'>Assists <br /> <strong class='text-muted'> {{ playerData.prevMatch.matchStats.assists }}</strong></p>
                     <p class='section-title'>Damage Dealt <br /> <strong class='text-muted'> {{ playerData.prevMatch.matchStats.damageDealt.toFixed(2) }}</strong></p>
+                    <p class="section-title">Boosts Used <br />
+                    <strong class='text-muted'>{{ playerData.prevMatch.matchStats.boosts }}</strong></p>
+                    <p class="section-title">Times Healed <br />
+                    <strong class='text-muted'>{{ playerData.prevMatch.matchStats.heals }}</strong></p>
+                    <p *ngIf='playerData.prevMatch.gameMode !== "solo"' class="section-title">Revives <br />
+                    <strong class='text-muted'>{{ playerData.prevMatch.matchStats.revives }}</strong></p>
                 </section>
             </aside>
         </section>
