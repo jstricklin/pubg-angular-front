@@ -7,16 +7,17 @@
     <div class="body container-flex pt-3 mb-3">
         <div class="row">
             <div class="col-sm-8 col-lg-6 mx-auto p-0">
-                <p class='text-light font-weight-light font-italic text-center mt-3 mx-auto' *ngIf='!playerData'> Enter a Player ID and Platform above</p>
                 <div *ngIf='playerData' class='mx-auto'>
                     <app-player-page (linkClick)='routeLink($event)' [matchId]='matchId' [selectedLink]='selectedPage' (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
                 </div>
             </div>
         </div>
     </div>
+    <h6 class='text-light font-weight-light font-italic text-center mx-auto' *ngIf='!playerData && !loading'> Enter a Player ID and Platform above</h6>
+            <h6 class='text-light font-weight-light text-center mx-auto' *ngIf='loading && !playerData'>Looking for player...</h6>
     <div class='footer align-self-end'>
         <footer class='bg-dark d-flex align-items-center justify-content-between'> 
-                <p class='text-light mx-3'>&#169; 2019 ChickenDiner</p><a class='text-light' href="mailto:{{email}}">email me</a>
+            <p class='text-light mx-3'>&#169; 2019 ChickenDiner</p><a class='text-light' href="mailto:{{email}}">email me</a>
             <p class='text-light mx-3 text-right font-italic'>.under construction.</p>
 
         </footer>        
