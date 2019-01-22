@@ -9,7 +9,7 @@ import { environment as env } from '../environments/environment';
 export class AppComponent {
     constructor() {  }
 
-    playerData: { prevMatch: {} };
+    playerData: { prevMatch: { map: string } };
     title = 'chicken-diner-angular';
     playerName: string = '';
     matchId: string = '';
