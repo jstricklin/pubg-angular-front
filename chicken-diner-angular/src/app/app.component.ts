@@ -15,6 +15,11 @@ export class AppComponent {
     matchId: string = '';
     shard: string = '';
     email = env.EMAIL_ADDY;
+    selectedPage: 'prev-match';
+
+    routeLink(route) {
+        this.selectedPage = route;
+    }
 
     onPlayerStartSearch(data) {
         if (data.playerName === '') { return; }
@@ -24,7 +29,7 @@ export class AppComponent {
         // console.log('env', env.API_URL);
         fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
             .then(res => res.json())
-            .then(json => { this.playerData = json; this.matchId = json.prevMatch.matchId; })
+            .then(json => { this.playerData = json; this.matchId = json.prevMatch.matchId; this.selectedPage = 'prev-match'; })
             .then(json => { console.log('player data', this.playerData);  })
             .catch(err => alert('No player data found!'));
     }
@@ -37,7 +42,7 @@ export class AppComponent {
         // console.log('env', env.API_URL);
         fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}/match/${data.matchId}`)
             .then(res => res.json())
-            .then(json => { console.log('res', json), this.playerData.prevMatch = json; })
+            .then(json => { console.log('res', json), this.playerData.prevMatch = json; this.selectedPage = 'prev-match'; })
             // .then(json => { console.log('match data', this.playerData);  })
             .catch(err => alert('No match data found!'));
     }

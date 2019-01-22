@@ -9,7 +9,7 @@
             <div class="col-sm-8 col-lg-6 mx-auto p-0">
                 <p class='text-light font-weight-light font-italic text-center mt-3 mx-auto' *ngIf='!playerData'> Enter a Player ID and Platform above</p>
                 <div *ngIf='playerData' class='mx-auto'>
-                    <app-player-page (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
+                    <app-player-page (linkClick)='routeLink($event)' [matchId]='matchId' [selectedLink]='selectedPage' (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
                 </div>
             </div>
         </div>

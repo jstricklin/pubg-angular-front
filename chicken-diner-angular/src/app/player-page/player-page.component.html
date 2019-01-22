@@ -13,14 +13,16 @@
         </section>
     </div>
     <!-- <hr> -->
-    <div class='row bg-secondary d-flex justify-content-end'>
-        <section class='text-right p-3'>
-            <h1 class='title p-0 text-dark'>Previous Match</h1>
-        </section>
+    <div class='row bg-secondary'>
+        <nav style='width:100%;' class='d-flex justify-content-around'>
+            <h2 (click)='onLinkClick("prev-match")' style='width:100%; height: 100%;' [ngClass]='{"bg-dark text-muted": selectedLink === "prev-match"}' class='player-link title px-2 py-2 center text-dark mr-2'>Previous Match</h2>
+            <h2 style='width:100%; height: 100%' (click)='onLinkClick("recent-matches")' [ngClass]='{"bg-dark text-muted": selectedLink === "recent-matches"}'class='player-link title px-2 py-2 text-right text-dark'>Recent Matches</h2>
+        </nav>
     </div>
-    <div class='row bg-dark'>
-        <div class='text-right col-12'>
-            <h6 class='lead text-muted pt-3'>{{ time(playerData.prevMatch.matchTime).format('LLL') }}</h6>
+    <div *ngIf='selectedLink === "prev-match"'class='row bg-dark'>
+        <div class='col-12'>
+            <h1 class='lead text-light pt-3'>{{ time(playerData.prevMatch.matchTime).format('LLL') }}</h1>
+            <p class='lead text-muted '>{{matchId}}</p>
         </div>
         <section class='match-stats p-3 d-flex justify-content-between mx-auto'>
             <aside class="match-details lead text-left">
@@ -90,15 +92,15 @@
             </aside>
         </section>
     </div>
-    <div class="row bg-secondary p-3">
-        <div class="matches-header">
-            <h1 class='title text-dark'>Recent Matches</h1>
-        </div>
-    </div>
-    <div class="row p-3 bg-dark text-light">
+    <!-- <div class="row bg-secondary p-3"> -->
+    <!--     <div class="matches-header"> -->
+    <!--         <h1 class='title text-dark'>Recent Matches</h1> -->
+    <!--     </div> -->
+    <!-- </div> -->
+    <div class="row p-3 bg-dark text-light" *ngIf='selectedLink === "recent-matches"'>
         <section class='mx-auto'>
-            <div class='card-text list-group list-group-flush' *ngFor='let match of playerData.prevMatchList'>
-                <span class='list-group-item bg-dark list-group-item-light list-group-item-action player-link' (click)='onMatchSearch(match.attributes.shardId, playerData.PlayerName, match.id )'>
+            <div class='card-text list-group player-link list-group-flush' *ngFor='let match of playerData.prevMatchList'>
+                <span class='list-group-item bg-dark list-group-item-light list-group-item-action' (click)='onMatchSearch(match.attributes.shardId, playerData.PlayerName, match.id )'>
                     <strong>{{ time(match.attributes.createdAt).format('LLL') }}</strong>
                     <p class='font-italic'>{{ parseMapName.default[match.attributes.mapName] }} - {{ match.attributes.gameMode }}</p>
                     <p class='font-italic'>K: {{ match.stats.kills }} - P: {{ match.stats.winPlace }} </p>

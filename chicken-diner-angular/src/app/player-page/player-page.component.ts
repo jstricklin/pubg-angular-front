@@ -19,10 +19,12 @@ export class PlayerPageComponent implements OnInit {
     parseMapName = mapName;
     parseWeaponName = dmgCauserName;
     time = moment;
+    @Input() selectedLink = '';
+    @Input() matchId = '';
     @Input() playerData: { };
-    // e  = new Events();
-    @Output () playerSearch = new EventEmitter<{ shard: string, playerName: string }>();
-    @Output () matchSearch = new EventEmitter<{ shard: string, playerName: string, matchId: string }>();
+    @Output() playerSearch = new EventEmitter<{ shard: string, playerName: string }>();
+    @Output() matchSearch = new EventEmitter<{ shard: string, playerName: string, matchId: string }>();
+    @Output() linkClick = new EventEmitter<string>();
 
     onPlayerSearch(shardName: string, name: string) {
         this.playerSearch.emit({
@@ -36,7 +38,9 @@ export class PlayerPageComponent implements OnInit {
             playerName: name,
             matchId: matchId,
         });
-        // console.log(shardName, name, matchId);
+    }
+    onLinkClick(route) {
+        this.linkClick.emit(route);
     }
 
   ngOnInit() {
