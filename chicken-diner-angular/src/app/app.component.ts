@@ -19,6 +19,9 @@ export class AppComponent {
     loading = false;
 
     routeLink(route) {
+        if (this.loading) {
+            return
+        }
         this.selectedPage = route;
     }
 

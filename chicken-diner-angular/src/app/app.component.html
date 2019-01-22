@@ -15,7 +15,7 @@
             </div>
         </div>
         <h6 class='text-light font-weight-light font-italic text-center mx-auto' *ngIf='!playerData && !loading'> Enter a Player ID and Platform above</h6>
-        <h6 class='text-light font-weight-light text-center mx-auto' *ngIf='loading && !playerData || loading && !playerData.error'>Looking for player...</h6>
+        <h6 class='text-light font-weight-light text-center mx-auto' *ngIf='loading && !playerData'>Looking for player...</h6>
         <div class='footer align-self-end'>
             <footer class='bg-dark d-flex align-items-center justify-content-between'> 
                 <p class='text-light mx-3'>&#169; 2019 ChickenDiner</p><a class='text-light' href="mailto:{{email}}">email me</a>
