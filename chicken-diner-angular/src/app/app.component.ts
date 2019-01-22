@@ -24,6 +24,7 @@ export class AppComponent {
 
     onPlayerStartSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
+        this.playerData = null;
         this.playerName = data.playerName;
         this.shard = data.shard;
         this.loading = true;
@@ -32,9 +33,14 @@ export class AppComponent {
         // console.log('env', env.API_URL);
         fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
             .then(res => res.json())
-            .then(json => { this.playerData = json; this.matchId = json.prevMatch.matchId; this.selectedPage = 'prev-match'; this.loading = false; })
+            .then(json => {
+                if (json.error) {
+                    throw json;
+                } else {
+                    this.playerData = json; this.matchId = json.prevMatch.matchId; this.selectedPage = 'prev-match'; this.loading = false;
+                }})
             .then(json => { console.log('player data', this.playerData);  })
-            .catch(err => alert('No player data found!'));
+            .catch(err => { this.loading = false; this.selectedPage = 'prev-match'; alert(err.error); });
     }
     onMatchStartSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
