@@ -15,8 +15,8 @@
     <!-- <hr> -->
     <div class='row bg-secondary'>
         <nav style='width:100%;' class='d-flex justify-content-around'>
-            <h2 (click)='onLinkClick("prev-match")' style='width:100%; height: 100%;' [ngClass]='{"bg-dark text-muted": selectedLink === "prev-match"}' class='player-link title px-2 py-2 center text-dark mr-2'>Previous Match</h2>
-            <h2 style='width:100%; height: 100%' (click)='onLinkClick("recent-matches")' [ngClass]='{"bg-dark text-muted": selectedLink === "recent-matches"}'class='player-link title px-2 py-2 text-right text-dark'>Recent Matches</h2>
+            <h2 (click)='onLinkClick("prev-match")' style='width:100%; height: 100%;' [ngClass]='{"bg-dark text-muted": selectedLink === "prev-match", "player-link" : selectedLink !== "prev-match"}' class='title px-2 py-2 center text-dark mr-2'>Previous Match</h2>
+            <h2 style='width:100%; height: 100%' (click)='onLinkClick("recent-matches")' [ngClass]='{"bg-dark text-muted": selectedLink === "recent-matches", "player-link" : selectedLink !== "recent-matches"}'class='title px-2 py-2 text-right text-dark'>Recent Matches</h2>
         </nav>
     </div>
     <div *ngIf='selectedLink === "prev-match"'class='row bg-dark'>

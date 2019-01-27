@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
-    height: 100%;
-    background: black;
+// html, body {
+//     height: 100%;
+//     background: black;
+// }
+@import '../node_modules/bootstrap/scss/_functions.scss';
+@import '../node_modules/bootstrap/scss/_variables.scss';
+@import '../node_modules/bootstrap/scss/mixins';
+
+strong {
+    color: pink;
 }
+
+$theme-colors: (
+    dark: rgba(53,58,63, 0.90)
+);
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
