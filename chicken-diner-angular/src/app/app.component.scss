@@ -1,20 +1,22 @@
+$small: 575px;
+$medium: 875px;
 .main {
     min-height: 100vh;
     background: rgba(53,58,63, 0.90);
 }
 .main-bg-wrapper {
-    background-image: url("../assets/images/Camp_Jackal_Main_No_Text_High_Res.jpg");
+    background-image: url("../assets/images/Camp_Jackal_Main_No_Text_Low_Res.jpg");
     &.miramar {
-        background-image: url("../assets/images/Miramar_Main_No_Text_High_Res.jpg");
+        background-image: url("../assets/images/Miramar_Main_No_Text_Low_Res.jpg");
     }
     &.sanhok {
-        background-image: url("../assets/images/Sanhok_Main_No_Text_High_Res.jpg");
+        background-image: url("../assets/images/Sanhok_Main_No_Text_Low_Res.jpg");
     }
     &.erangel {
-        background-image: url("../assets/images/Erangel_Main_No_Text_High_Res.jpg");
+        background-image: url("../assets/images/Erangel_Main_No_Text_Low_Res.jpg");
     }
     &.vikendi {
-        background-image: url("../assets/images/Vikendi_Main_No_Text_High_Res.png");
+        background-image: url("../assets/images/Vikendi_Main_No_Text_Low_Res.png");
     }
     background-size: cover;
     background-position: center;
@@ -35,6 +37,12 @@
 .body {
     margin: 0;
     margin-top: 145px;
+    @media(min-width: $small) {
+        margin-top: 100px;
+    }
+    @media(min-width:$medium) {
+        margin-top: 55px;
+    }
     width: 100%;
 }
 p {
