@@ -19,9 +19,9 @@
             <h2 style='width:100%; height: 100%' (click)='onLinkClick("recent-matches")' [ngClass]='{"bg-dark text-muted": selectedLink === "recent-matches", "player-link" : selectedLink !== "recent-matches"}'class='title px-2 py-2 text-right text-dark'>Recent Matches</h2>
         </nav>
     </div>
-    <div *ngIf='selectedLink === "prev-match"'class='row bg-dark'>
+    <div *ngIf='selectedLink === "prev-match"'class='row p-5 px-4 bg-clear'>
         <div class='col-12'>
-            <h1 class='lead text-light pt-3'>{{ time(playerData.prevMatch.matchTime).format('LLL') }}</h1>
+            <h1 class='lead text-light'>{{ time(playerData.prevMatch.matchTime).format('LLL') }}</h1>
             <p class='lead text-muted '>{{matchId}}</p>
         </div>
         <section class='match-stats p-3 d-flex justify-content-between mx-auto'>
@@ -97,7 +97,7 @@
     <!--         <h1 class='title text-dark'>Recent Matches</h1> -->
     <!--     </div> -->
     <!-- </div> -->
-    <div class="row p-3 bg-dark text-light" *ngIf='selectedLink === "recent-matches"'>
+    <div class="row p-5 bg-clear text-light" *ngIf='selectedLink === "recent-matches"'>
         <section class='mx-auto'>
             <div class='card-text list-group player-link list-group-flush' *ngFor='let match of playerData.prevMatchList'>
                 <span class='list-group-item bg-dark list-group-item-light list-group-item-action' (click)='onMatchSearch(match.attributes.shardId, playerData.PlayerName, match.id )'>
