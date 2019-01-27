@@ -54,6 +54,9 @@ li {
 }
 .player-link {
     cursor: pointer;
+    :hover {
+        color: white;
+    }
 }
 .match-stats {
     width: 100%;

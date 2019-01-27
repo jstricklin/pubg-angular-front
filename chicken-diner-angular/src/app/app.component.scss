@@ -2,7 +2,8 @@ $small: 575px;
 $medium: 875px;
 .main {
     min-height: 100vh;
-    background: rgba(53,58,63, 0.90);
+    // background: rgba(53,58,63, 0.90);
+    background: linear-gradient(rgba(53,58,63, 0.75), rgba(43,48,53, 1));
 }
 .main-bg-wrapper {
     background-image: url("../assets/images/Camp_Jackal_Main_No_Text_Low_Res.jpg");
