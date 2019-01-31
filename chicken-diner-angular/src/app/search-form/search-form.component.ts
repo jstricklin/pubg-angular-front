@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../shared/search.service';
 
 @Component({
     selector: 'app-search-form',
@@ -7,18 +8,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SearchFormComponent implements OnInit {
 
-    constructor() { }
+    constructor(private searchService: SearchService) { }
 
     playerName: string = '';
     shard: string = 'psn';
 
-    @Output() playerSearch = new EventEmitter<{shard: string, playerName: string}>();
-
     onPlayerSearch(shard: string, playerName: string) {
-        this.playerSearch.emit({
-            shard: shard,
-            playerName: playerName
-        });
+        this.searchService.startPlayerSearch({ shard: shard, playerName: playerName });
     }
 
     ngOnInit() {

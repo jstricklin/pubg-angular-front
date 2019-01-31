@@ -6,6 +6,7 @@ import * as itemId from '../../assets/utils/dictionaries/telemetry/item/itemId.j
 import * as dmgCategory from '../../assets/utils/dictionaries/telemetry/damageTypeCategory.json';
 // import { Events } from '../shared/search-event.model';
 const miramarBG = '../../assets/images/miramar-bg-01.png';
+import { SearchService } from '../shared/search.service';
 
 @Component({
   selector: 'app-player-page',
@@ -14,7 +15,7 @@ const miramarBG = '../../assets/images/miramar-bg-01.png';
 })
 export class PlayerPageComponent implements OnInit {
 
-    constructor() {  }
+    constructor(private searchService: SearchService) {  }
 
     parseMapName = mapName;
     parseWeaponName = dmgCauserName;
@@ -22,15 +23,11 @@ export class PlayerPageComponent implements OnInit {
     @Input() selectedLink = '';
     @Input() matchId = '';
     @Input() playerData: { };
-    @Output() playerSearch = new EventEmitter<{ shard: string, playerName: string }>();
     @Output() matchSearch = new EventEmitter<{ shard: string, playerName: string, matchId: string }>();
     @Output() linkClick = new EventEmitter<string>();
 
     onPlayerSearch(shardName: string, name: string) {
-        this.playerSearch.emit({
-            shard: shardName,
-            playerName: name,
-        });
+        this.searchService.startPlayerSearch({ shard: shardName, playerName: name })
     }
     onMatchSearch(shardName: string, name: string, matchId: string) {
         this.matchSearch.emit({
