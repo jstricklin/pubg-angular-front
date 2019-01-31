@@ -23,18 +23,13 @@ export class PlayerPageComponent implements OnInit {
     @Input() selectedLink = '';
     @Input() matchId = '';
     @Input() playerData: { };
-    @Output() matchSearch = new EventEmitter<{ shard: string, playerName: string, matchId: string }>();
     @Output() linkClick = new EventEmitter<string>();
 
     onPlayerSearch(shardName: string, name: string) {
         this.searchService.startPlayerSearch({ shard: shardName, playerName: name })
     }
     onMatchSearch(shardName: string, name: string, matchId: string) {
-        this.matchSearch.emit({
-            shard: shardName,
-            playerName: name,
-            matchId: matchId,
-        });
+        this.searchService.startMatchSearch({ shard: shardName, playerName: name, matchId: matchId });
     }
     onLinkClick(route) {
         this.linkClick.emit(route);

@@ -8,7 +8,6 @@ export class SearchService {
     matchId: string = '';
     shard: string = '';
     email = env.EMAIL_ADDY;
-    selectedPage = 'prev-match';
 
     playerSearch = new EventEmitter<{
         loading: boolean,
@@ -38,21 +37,51 @@ export class SearchService {
                     });
                 }})
             .then(json => { console.log('player data', this.playerData);  })
-            .catch(err => { this.loading = false; this.selectedPage = 'prev-match'; alert(err.error); });
+            .catch(err => {
+                this.loading = false;
+                this.playerSearch.emit(
+                    {
+                        matchId: 'None',
+                        loading: this.loading,
+                        selectedPage: 'prev-match'
+                    });
+                alert(err.error); });
     }
-    onMatchStartSearch(data) {
+    startMatchSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
         this.playerName = data.playerName;
         this.matchId = data.matchId;
         this.shard = data.shard;
-        this.selectedPage = 'loading';
         this.loading = true;
-        console.log('onPlayerStartSearch', data);
+        console.log('startMatchSearch service', data);
+        this.playerSearch.emit({
+            matchId: data.matchId,
+            selectedPage: 'loading',
+            loading: this.loading,
+        });
         // console.log('env', env.API_URL);
         fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}/match/${data.matchId}`)
             .then(res => res.json())
-            .then(json => { console.log('res', json), this.playerData.prevMatch = json; this.selectedPage = 'prev-match'; this.loading = false; })
+            .then(json => {
+                console.log('res', json);
+                this.playerData.prevMatch = json;
+                this.loading = false;
+                this.playerSearch.emit({
+                    selectedPage: 'prev-match',
+                    loading: this.loading,
+                    matchId: data.matchId
+                });
+            })
             // .then(json => { console.log('match data', this.playerData);  })
-            .catch(err => alert('No match data found!'));
+            .catch(err => {
+                alert('No match data found!');
+                this.loading = false;
+                this.playerSearch.emit(
+                    {
+                        matchId: 'None',
+                        loading: this.loading,
+                        selectedPage: 'prev-match'
+                    });
+            });
     }
 }
