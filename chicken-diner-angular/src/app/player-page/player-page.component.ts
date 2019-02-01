@@ -40,6 +40,7 @@ export class PlayerPageComponent implements OnInit {
 
     ngOnInit() {
         this.playerData = this.searchService.playerData;
+        this.matchId = this.searchService.matchId;
         this.searchService.playerSearch.subscribe((e) => {
             this.playerData = this.searchService.playerData;
             this.selectedLink = e.selectedPage;

@@ -30,18 +30,21 @@ export class SearchService {
                     throw json;
                 } else {
                     this.playerData = json;
+                    this.matchId = json.prevMatch.matchId;
+                    this.loading = false;
                     this.playerSearch.emit({
-                        matchId: json.prevMatch.matchId,
+                        matchId: this.matchId,
                         selectedPage: 'prev-match',
-                        loading: false
+                        loading: this.loading
                     });
                 }})
             // .then(json => { console.log('player data', this.playerData);  })
             .catch(err => {
                 this.loading = false;
+                this.matchId = 'None';
                 this.playerSearch.emit(
                     {
-                        matchId: 'None',
+                        matchId: this.matchId,
                         loading: this.loading,
                         selectedPage: 'prev-match'
                     });
@@ -55,7 +58,7 @@ export class SearchService {
         this.loading = true;
         console.log('startMatchSearch service', data);
         this.playerSearch.emit({
-            matchId: data.matchId,
+            matchId: this.matchId,
             selectedPage: 'loading',
             loading: this.loading,
         });
@@ -66,19 +69,21 @@ export class SearchService {
                 console.log('res', json);
                 this.playerData.prevMatch = json;
                 this.loading = false;
+                this.matchId = data.matchId;
                 this.playerSearch.emit({
                     selectedPage: 'prev-match',
                     loading: this.loading,
-                    matchId: data.matchId
+                    matchId: this.matchId
                 });
             })
             // .then(json => { console.log('match data', this.playerData);  })
             .catch(err => {
                 alert('No match data found!');
                 this.loading = false;
+                this.matchId = 'None';
                 this.playerSearch.emit(
                     {
-                        matchId: 'None',
+                        matchId: this.matchId,
                         loading: this.loading,
                         selectedPage: 'prev-match'
                     });
