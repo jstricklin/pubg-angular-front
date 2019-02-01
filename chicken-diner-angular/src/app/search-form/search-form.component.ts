@@ -13,8 +13,8 @@ export class SearchFormComponent implements OnInit {
     playerName: string = '';
     shard: string = 'psn';
 
-    onPlayerSearch(shard: string, playerName: string) {
-        this.searchService.startPlayerSearch({ shard: shard, playerName: playerName });
+    onPlayerSearch() {
+        this.searchService.startPlayerSearch({ shard: this.shard, playerName: this.playerName });
     }
 
     ngOnInit() {
