@@ -36,7 +36,7 @@ export class SearchService {
                         loading: false
                     });
                 }})
-            .then(json => { console.log('player data', this.playerData);  })
+            // .then(json => { console.log('player data', this.playerData);  })
             .catch(err => {
                 this.loading = false;
                 this.playerSearch.emit(

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import * as dmgCauserName from '../../assets/utils/dictionaries/telemetry/damageCauserName.json';
 import * as mapName from '../../assets/utils/dictionaries/telemetry/mapName.json';
@@ -9,9 +9,9 @@ const miramarBG = '../../assets/images/miramar-bg-01.png';
 import { SearchService } from '../shared/search.service';
 
 @Component({
-  selector: 'app-player-page',
-  templateUrl: './player-page.component.html',
-  styleUrls: ['./player-page.component.scss']
+    selector: 'app-player-page',
+    templateUrl: './player-page.component.html',
+    styleUrls: ['./player-page.component.scss']
 })
 export class PlayerPageComponent implements OnInit {
 
@@ -20,22 +20,32 @@ export class PlayerPageComponent implements OnInit {
     parseMapName = mapName;
     parseWeaponName = dmgCauserName;
     time = moment;
-    @Input() selectedLink = '';
-    @Input() matchId = '';
-    @Input() playerData: { };
-    @Output() linkClick = new EventEmitter<string>();
+    selectedLink = 'prev-match';
+    matchId = '';
+    playerData: { prevMatch: { map: string } };
+    loading = false;
 
     onPlayerSearch(shardName: string, name: string) {
-        this.searchService.startPlayerSearch({ shard: shardName, playerName: name })
+        this.searchService.startPlayerSearch({ shard: shardName, playerName: name });
     }
     onMatchSearch(shardName: string, name: string, matchId: string) {
         this.searchService.startMatchSearch({ shard: shardName, playerName: name, matchId: matchId });
     }
     onLinkClick(route) {
-        this.linkClick.emit(route);
+        if (this.loading) {
+            return;
+        }
+        this.selectedLink = route;
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.playerData = this.searchService.playerData;
+        this.searchService.playerSearch.subscribe((e) => {
+            this.playerData = this.searchService.playerData;
+            this.selectedLink = e.selectedPage;
+            this.matchId = e.matchId;
+            this.loading = e.loading;
+        });
+    }
 
 }

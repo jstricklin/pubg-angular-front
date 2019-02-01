@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-sm-8 col-lg-6 mx-auto p-0">
                     <div *ngIf='playerData' class='mx-auto player-page'>
-                        <app-player-page (linkClick)='routeLink($event)' [matchId]='matchId' [selectedLink]='selectedPage' (matchSearch)='onMatchStartSearch($event)' (playerSearch)='onPlayerStartSearch($event)' [playerData]='playerData'></app-player-page>
+                        <app-player-page></app-player-page>
                     </div>
                 </div>
             </div>

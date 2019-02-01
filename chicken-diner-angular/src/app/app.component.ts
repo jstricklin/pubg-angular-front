@@ -13,27 +13,19 @@ export class AppComponent implements OnInit {
 
     playerData: { prevMatch: { map: string } };
     title = 'chicken-diner-angular';
-    playerName: string = '';
-    matchId: string = '';
-    shard: string = '';
+    // playerName: string = '';
+    // matchId: string = '';
+    // shard: string = '';
     email = env.EMAIL_ADDY;
-    selectedPage = 'prev-match';
     loading = false;
 
     ngOnInit() {
         this.searchService.playerSearch.subscribe(
             (event) => {
-                this.selectedPage = event.selectedPage,
-                this.loading = event.loading
+                this.loading = event.loading;
                 this.playerData = this.searchService.playerData;
             }
-        )
-    }
-    routeLink(route) {
-        if (this.loading) {
-            return
-        }
-        this.selectedPage = route;
+        );
     }
 
 }
