@@ -1,4 +1,4 @@
-<div *ngIf='playerData' class="container-flex text-light">
+<div *ngIf='playerData && !loading' class="container-flex text-light">
     <div [ngClass]='{"sanhok": playerData.prevMatch.map === "Savage_Main", "miramar": playerData.prevMatch.map === "Desert_Main", "erangel": playerData.prevMatch.map === "Erangel_Main", vikendi: playerData.prevMatch.map === "DihorOtok_Main"}' class="row bg-dark player-header erangel">
         <section class='p-3 text-left'>
             <h3 class='display-4'>{{ playerData.PlayerName }}</h3>

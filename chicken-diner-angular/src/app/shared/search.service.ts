@@ -1,7 +1,11 @@
 import { environment as env } from '../../environments/environment';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Injectable()
 export class SearchService {
-    playerData: { prevMatch: { map: string } };
+    constructor(private router: Router, private route: ActivatedRoute) {  }
+    playerData: { playerName: string, prevMatch: { map: string } };
     loading = false;
 
     playerName: string = '';
@@ -23,7 +27,7 @@ export class SearchService {
         this.playerSearch.emit({ loading: true, selectedPage: 'loading', matchId: 'None' });
         console.log('onPlayerStartSearch', data);
         // console.log('env', env.API_URL);
-        fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
+        return fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
             .then(res => res.json())
             .then(json => {
                 if (json.error) {
@@ -37,8 +41,16 @@ export class SearchService {
                         selectedPage: 'prev-match',
                         loading: this.loading
                     });
+                    return json;
                 }})
-            // .then(json => { console.log('player data', this.playerData);  })
+            // .then( json =>
+            //     this.router.navigate([
+            //         'shard', data.shard,
+            //         'player', data.playerName,
+            //         'match', json.prevMatch.matchId
+            //     ])
+            // )
+        // .then(json => { console.log('player data', this.playerData);  })
             .catch(err => {
                 this.loading = false;
                 this.matchId = 'None';
@@ -48,7 +60,8 @@ export class SearchService {
                         loading: this.loading,
                         selectedPage: 'prev-match'
                     });
-                alert(err.error); });
+                this.router.navigate(['error'], { fragment: 'player-not-found' } );
+            });
     }
     startMatchSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
@@ -56,14 +69,15 @@ export class SearchService {
         this.matchId = data.matchId;
         this.shard = data.shard;
         this.loading = true;
-        console.log('startMatchSearch service', data);
+        console.log('startMatchSearch service', data, this.route);
+        // this.router.navigate(['./'] , { fragment: 'loading', relativeTo: this.route });
         this.playerSearch.emit({
             matchId: this.matchId,
             selectedPage: 'loading',
             loading: this.loading,
         });
         // console.log('env', env.API_URL);
-        fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}/match/${data.matchId}`)
+        return fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}/match/${data.matchId}`)
             .then(res => res.json())
             .then(json => {
                 console.log('res', json);
@@ -75,10 +89,18 @@ export class SearchService {
                     loading: this.loading,
                     matchId: this.matchId
                 });
+                return json;
             })
-            // .then(json => { console.log('match data', this.playerData);  })
+            // .then( json =>
+            //     this.router.navigate([
+            //         'shard', data.shard,
+            //         'player', data.playerName,
+            //         'match', json.prevMatch.matchId
+            //     ])
+            // )
+        // .then(json => { console.log('match data', this.playerData);  })
             .catch(err => {
-                alert('No match data found!');
+                this.router.navigate(['error'], { fragment: 'match-not-found' } );
                 this.loading = false;
                 this.matchId = 'None';
                 this.playerSearch.emit(

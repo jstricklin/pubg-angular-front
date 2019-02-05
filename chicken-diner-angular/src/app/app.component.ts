@@ -6,7 +6,7 @@ import { SearchService } from './shared/search.service';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    providers: [SearchService]
+    providers: []
 })
 export class AppComponent implements OnInit {
     constructor(private searchService: SearchService) {  }

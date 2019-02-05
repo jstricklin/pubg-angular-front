@@ -6,21 +6,28 @@ import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { HeaderComponent } from './header/header.component';
 import { PlayerPageComponent } from './player-page/player-page.component';
-
+import { Routes, RouterModule } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { HomeComponent } from './home/home.component';
+import { SearchService } from './shared/search.service';
+import { SearchResolver } from './search-resolver.service';
+import { MatchResolver } from './match-resolver.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFormComponent,
     HeaderComponent,
-    PlayerPageComponent
+    PlayerPageComponent,
+    ErrorPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
       AppRoutingModule,
       FormsModule,
   ],
-  providers: [],
+  providers: [SearchService, SearchResolver, MatchResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
