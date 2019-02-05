@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../shared/search.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    loading: false;
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+      this.searchService.playerSearch.subscribe(
+          (e) => this.loading = e.loading
+      );
   }
 
 }
