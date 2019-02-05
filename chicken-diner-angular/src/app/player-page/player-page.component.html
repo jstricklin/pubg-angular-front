@@ -32,6 +32,7 @@
                         <li *ngFor='let teamMate of playerData.prevMatch.teamMates'><strong (click)='onPlayerSearch(playerData.prevMatch.shard, teamMate)' class='player-link text-primary'>{{ teamMate }}</strong></li>
                     </ul>
                 </section>
+                <app-engagements></app-engagements>
                 <section class='mb-2' *ngIf='playerData.prevMatch.sortedHits.length > 0'>
                     <p class='section-title'>Enemies Hit </p>
                     <ul>

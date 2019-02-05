@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { SearchService } from './shared/search.service';
 import { SearchResolver } from './search-resolver.service';
 import { MatchResolver } from './match-resolver.service';
+import { EngagementsComponent } from './engagements/engagements.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatchResolver } from './match-resolver.service';
     HeaderComponent,
     PlayerPageComponent,
     ErrorPageComponent,
-    HomeComponent
+    HomeComponent,
+    EngagementsComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import * as dmgCategory from '../../assets/utils/dictionaries/telemetry/damageTy
 const miramarBG = '../../assets/images/miramar-bg-01.png';
 import { SearchService } from '../shared/search.service';
 import { ActivatedRoute, Params, Data, Router } from '@angular/router';
+import { EngagementsComponent } from '../engagements/engagements.component';
 
 @Component({
     selector: 'app-player-page',

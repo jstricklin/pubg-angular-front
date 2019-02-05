@@ -66,7 +66,7 @@ export class SearchService {
     startMatchSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
         // check if app entered from outside
-        if (!this.playerData) {
+        if (!this.playerData || this.playerName !== data.playerName ) {
             this.startPlayerSearch({ playerName: data.playerName, shard: data.shard })
                 .then( res => {
                     this.startMatchSearch(data);
