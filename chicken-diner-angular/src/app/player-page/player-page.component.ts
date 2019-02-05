@@ -28,12 +28,10 @@ export class PlayerPageComponent implements OnInit {
 
     onPlayerSearch(shardName: string, name: string) {
         this.router.navigate(['shard', shardName, 'player', name]);
-        // this.searchService.startPlayerSearch({ shard: shardName, playerName: name });
     }
     onMatchSearch(shardName: string, name: string, matchId: string) {
         // console.log(shardName, name, matchId);
         this.router.navigate(['shard', shardName, 'player', name, 'match', matchId]);
-        // this.searchService.startMatchSearch({ shard: shardName, playerName: name, matchId: matchId });
     }
     onLinkClick(route) {
         if (this.loading) {
@@ -43,21 +41,30 @@ export class PlayerPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('player data', this.playerData)
-        this.route.data.subscribe(
-            (data: Data) => {
-                this.playerData = data['playerData'];
-            }
-        );
         this.searchService.playerSearch.subscribe(
             (e) => {
-                console.log('match data', this.route.data);
-                this.playerData = this.route.data['matchData'];
+                this.playerData = this.searchService.playerData;
                 this.selectedLink = e.selectedPage;
                 this.loading = e.loading;
                 this.matchId = e.matchId;
             }
         );
+        if (this.route.snapshot.params.matchId) {
+            this.route.data.subscribe(
+                (data: Data) => {
+                    console.log('match data rdy!', data);
+                    this.playerData = data['matchData'];
+                }
+            );
+        } else {
+            console.log('just player', this.route.snapshot.params);
+            this.route.data.subscribe(
+                (data: Data) => {
+                    console.log('p data rdy!', data);
+                    this.playerData = data['playerData'];
+                }
+            );
+        }
 
         // this.playerData = this.searchService.playerData;
         // this.matchId = this.searchService.matchId;

@@ -25,7 +25,7 @@ export class SearchService {
         this.playerName = data.playerName;
         this.shard = data.shard;
         this.playerSearch.emit({ loading: true, selectedPage: 'loading', matchId: 'None' });
-        console.log('onPlayerStartSearch', data);
+        // console.log('onPlayerStartSearch', data);
         // console.log('env', env.API_URL);
         return fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}`)
             .then(res => res.json())
@@ -43,13 +43,13 @@ export class SearchService {
                     });
                     return json;
                 }})
-            // .then( json =>
-            //     this.router.navigate([
-            //         'shard', data.shard,
-            //         'player', data.playerName,
-            //         'match', json.prevMatch.matchId
-            //     ])
-            // )
+        // .then( json =>
+        //     this.router.navigate([
+        //         'shard', data.shard,
+        //         'player', data.playerName,
+        //         'match', json.prevMatch.matchId
+        //     ])
+        // )
         // .then(json => { console.log('player data', this.playerData);  })
             .catch(err => {
                 this.loading = false;
@@ -65,32 +65,40 @@ export class SearchService {
     }
     startMatchSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
-        this.playerName = data.playerName;
-        this.matchId = data.matchId;
-        this.shard = data.shard;
-        this.loading = true;
-        console.log('startMatchSearch service', data, this.route);
-        // this.router.navigate(['./'] , { fragment: 'loading', relativeTo: this.route });
-        this.playerSearch.emit({
-            matchId: this.matchId,
-            selectedPage: 'loading',
-            loading: this.loading,
-        });
-        // console.log('env', env.API_URL);
-        return fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}/match/${data.matchId}`)
-            .then(res => res.json())
-            .then(json => {
-                console.log('res', json);
-                this.playerData.prevMatch = json;
-                this.loading = false;
-                this.matchId = data.matchId;
-                this.playerSearch.emit({
-                    selectedPage: 'prev-match',
-                    loading: this.loading,
-                    matchId: this.matchId
+        // check if app entered from outside
+        if (!this.playerData) {
+            this.startPlayerSearch({ playerName: data.playerName, shard: data.shard })
+                .then( res => {
+                    this.startMatchSearch(data);
                 });
-                return json;
-            })
+        } else {
+            console.log('player data', this.playerData);
+            this.playerName = data.playerName;
+            this.matchId = data.matchId;
+            this.shard = data.shard;
+            this.loading = true;
+            // console.log('startMatchSearch service', data, this.route);
+            // this.router.navigate(['./'] , { fragment: 'loading', relativeTo: this.route });
+            this.playerSearch.emit({
+                matchId: this.matchId,
+                selectedPage: 'loading',
+                loading: this.loading,
+            });
+            // console.log('env', env.API_URL);
+            return fetch(`${env.API_URL}/shard/${data.shard}/player/${data.playerName}/match/${data.matchId}`)
+                .then(res => res.json())
+                .then(json => {
+                    console.log('res', json);
+                    this.playerData.prevMatch = json;
+                    this.loading = false;
+                    this.matchId = data.matchId;
+                    this.playerSearch.emit({
+                        selectedPage: 'prev-match',
+                        loading: this.loading,
+                        matchId: this.matchId
+                    });
+                    return this.playerData;
+                })
             // .then( json =>
             //     this.router.navigate([
             //         'shard', data.shard,
@@ -98,17 +106,19 @@ export class SearchService {
             //         'match', json.prevMatch.matchId
             //     ])
             // )
-        // .then(json => { console.log('match data', this.playerData);  })
-            .catch(err => {
-                this.router.navigate(['error'], { fragment: 'match-not-found' } );
-                this.loading = false;
-                this.matchId = 'None';
-                this.playerSearch.emit(
-                    {
-                        matchId: this.matchId,
-                        loading: this.loading,
-                        selectedPage: 'prev-match'
-                    });
-            });
+            // .then(json => { console.log('match data', this.playerData);  })
+                .catch(err => {
+                    console.log('err', err);
+                    this.router.navigate(['error'], { fragment: 'match-not-found' } );
+                    this.loading = false;
+                    this.matchId = 'None';
+                    this.playerSearch.emit(
+                        {
+                            matchId: this.matchId,
+                            loading: this.loading,
+                            selectedPage: 'prev-match'
+                        });
+                });
+        }
     }
 }

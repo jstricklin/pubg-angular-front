@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 export class SearchResolver implements Resolve<{}> {
     constructor(private searchService: SearchService) {  }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<{}> | Promise<{}> | {} {
+        console.log('player params', route.params);
         return this.searchService.startPlayerSearch({ shard: route.params['shard'], playerName: route.params['name'] });
     }
 
