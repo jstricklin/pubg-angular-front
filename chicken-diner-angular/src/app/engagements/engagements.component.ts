@@ -44,7 +44,7 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
     }
     getTotalDmg(el: ElementRef['nativeElement'], sortBy: string) {
         const name = el.attributes['data-enemy'].value;
-        let weapons: [] = [];
+        let weapons: any[];
         if (sortBy === 'received') {
             this.playerData.data.prevMatch.sortedAttackers.filter(attack => {
                 if (attack.attacker.name === name) {
@@ -63,7 +63,7 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
                 }
             });
         }
-        if ( weapons.length < 1 ) {
+        if (!weapons) {
             return 0;
         } else {
             // console.log('weapon first hit', weapons);
@@ -72,7 +72,7 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
                 // console.log(weapons.reduce((weap, prev) => weap.totalDmg + prev.totalDmg);
                 // )
                 console.log('multi weap', weapons);
-                totalDmg = weapons.reduce((prev: { totalDmg: number }, weap: { totalDmg: number }) => {
+                totalDmg = weapons.reduce((prev, weap) => {
                     console.log('reduce', weap, prev);
                     return prev.totalDmg + weap.totalDmg;
                 });
