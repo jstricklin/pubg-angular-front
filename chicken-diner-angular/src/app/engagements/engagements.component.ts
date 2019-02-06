@@ -63,7 +63,7 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
                 }
             });
         }
-        if ( !weapons.length ) {
+        if ( weapons.length < 1 ) {
             return 0;
         } else {
             // console.log('weapon first hit', weapons);
@@ -71,9 +71,10 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
             if (weapons.length > 1) {
                 // console.log(weapons.reduce((weap, prev) => weap.totalDmg + prev.totalDmg);
                 // )
-                totalDmg = weapons.reduce((weap, prev) => {
-                    // console.log('reduce', weap, prev);
-                    return weap.totalDmg + prev.totalDmg;
+                console.log('multi weap', weapons);
+                totalDmg = weapons.reduce((prev: { totalDmg: number }, weap: { totalDmg: number }) => {
+                    console.log('reduce', weap, prev);
+                    return prev.totalDmg + weap.totalDmg;
                 });
             } else {
                 // console.log(weapons);
