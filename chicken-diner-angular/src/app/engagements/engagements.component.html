@@ -2,16 +2,16 @@
     <div class="row" style="{ width: 100%; }">
         <div class="col-12">
             <div class='main-header bg-secondary border-0 rounded-top p-3 text-right'>
-                <h3>Players Engaged</h3>
+                <h3 class='text-dark'>Players Engaged</h3>
             </div>
         </div>
     </div>
     <div class="row mx-3 mb-1 py-1">
-        <div class="text-center col-3">
+        <div class="text-left col-3">
             <p>Name</p>
         </div>
         <div class="text-center col-3">
-            <p>K/DBNO/K</p>
+            <p>K/DBNO</p>
         </div>
         <div class="text-center col-3">
             <p>Damage Taken</p>
@@ -20,8 +20,10 @@
             <p>Damage Dealt</p>
         </div>
     </div>
-    <div *ngFor='let enemy of enemiesEngaged' [attr.data-enemy]="enemy" class="border-top row mx-3 py-3" #engagementRow >
-        <div class="col-3 text-center m-0">
+    <!-- <hr class='main-divider'> -->
+    <div *ngFor='let enemy of enemiesEngaged' [attr.data-enemy]="enemy" class="row px-3 py-2 engagementRow" #engagementRow >
+        <!-- <hr class='item-divider'> -->
+        <div class="col-3 text-left m-0">
             <p class='lead'>{{ enemy }} </p>
         </div>
         <div class="col-3 text-center m-0">

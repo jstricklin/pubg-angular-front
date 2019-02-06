@@ -1,5 +1,8 @@
 $small: 575px;
 $medium: 875px;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
 .main {
     min-height: 100vh;
     // background: rgba(53,58,63, 0.90);
