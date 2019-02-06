@@ -1,3 +1,37 @@
-<p>
-  engagements works!
-</p>
+<div class="container-flex bg-dark border-0 rounded">
+    <div class="row" style="{ width: 100%; }">
+        <div class="col-12">
+            <div class='main-header bg-secondary border-0 rounded-top p-3 text-right'>
+                <h3>Players Engaged</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-3 mb-1 py-1">
+        <div class="text-center col-3">
+            <p>Name</p>
+        </div>
+        <div class="text-center col-3">
+            <p>K/DBNO/K</p>
+        </div>
+        <div class="text-center col-3">
+            <p>Damage Taken</p>
+        </div>
+        <div class="text-center col-3">
+            <p>Damage Dealt</p>
+        </div>
+    </div>
+    <div *ngFor='let enemy of enemiesEngaged' [attr.data-enemy]="enemy" class="border-top row mx-3 py-3" #engagementRow >
+        <div class="col-3 text-center m-0">
+            <p class='lead'>{{ enemy }} </p>
+        </div>
+        <div class="col-3 text-center m-0">
+            <p class='text-danger mr-2' *ngIf='enemy === playerData.prevMatch.killer.name'>K</p>
+        </div>
+        <div class="text-center col-3 m-0">
+            <p class='lead'>{{ getTotalDmg(engagementRow, 'received') }} </p>
+        </div>
+        <div class="text-center col-3 m-0">
+            <p class='lead'>{{ getTotalDmg(engagementRow, 'dealt') }} </p>
+        </div>
+    </div>
+</div>
