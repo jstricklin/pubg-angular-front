@@ -9,6 +9,7 @@ const miramarBG = '../../assets/images/miramar-bg-01.png';
 import { SearchService } from '../shared/search.service';
 import { ActivatedRoute, Params, Data, Router } from '@angular/router';
 import { EngagementsComponent } from '../engagements/engagements.component';
+import { PlayerData } from '../shared/player-data.model';
 
 @Component({
     selector: 'app-player-page',
@@ -24,7 +25,7 @@ export class PlayerPageComponent implements OnInit {
     time = moment;
     selectedLink = 'prev-match';
     matchId = '';
-    playerData: { playerName: string, prevMatch: { map: string } };
+    playerData: PlayerData;
     loading = false;
 
     onPlayerSearch(shardName: string, name: string) {

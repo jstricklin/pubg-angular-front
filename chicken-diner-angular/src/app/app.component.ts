@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment as env } from '../environments/environment';
 import { SearchService } from './shared/search.service';
+import { PlayerData } from './shared/player-data.model';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +12,8 @@ import { SearchService } from './shared/search.service';
 export class AppComponent implements OnInit {
     constructor(private searchService: SearchService) {  }
 
-    playerData: { prevMatch: { map: string } };
+    // playerData: { prevMatch: { map: string } };
+    playerData: PlayerData;
     title = 'chicken-diner-angular';
     // playerName: string = '';
     // matchId: string = '';

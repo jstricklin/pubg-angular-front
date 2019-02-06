@@ -1,5 +1,5 @@
 <div class='main-bg-wrapper'
-    [ngClass]='{"sanhok": playerData && playerData.prevMatch.map === "Savage_Main", "miramar": playerData && playerData.prevMatch.map === "Desert_Main", "erangel": playerData && playerData.prevMatch.map === "Erangel_Main", "vikendi": playerData && playerData.prevMatch.map === "DihorOtok_Main"}'>
+    [ngClass]='{"sanhok": playerData && playerData.data.prevMatch.map === "Savage_Main", "miramar": playerData && playerData.data.prevMatch.map === "Desert_Main", "erangel": playerData && playerData.data.prevMatch.map === "Erangel_Main", "vikendi": playerData && playerData.data.prevMatch.map === "DihorOtok_Main"}'>
     <div class='main d-flex justify-content-center flex-wrap container-flex'>
         <div class='header-wrapper fixed-top'>
             <app-header>

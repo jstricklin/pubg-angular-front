@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { SearchService } from '../shared/search.service';
-
+import { PlayerData } from '../shared/player-data.model';
 @Component({
     selector: 'app-engagements',
     templateUrl: './engagements.component.html',
@@ -11,11 +11,12 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
     @ViewChildren('engagementRow') engagements: ElementRef[];
 
     constructor(private searchService: SearchService, private renderer: Renderer2) { }
-    playerData: { playerName: string };
     enemiesEngaged: string[] = ['Jane420', '666nightBlaDe333', 'senpaiDama'];
+    playerData: PlayerData;
 
     ngOnInit() {
         this.playerData = this.searchService.playerData;
+        // console.log('playerData', this.playerData.data);
         this.getEnemyData();
 
         this.searchService.playerSearch.subscribe(
@@ -32,8 +33,10 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
     getEnemyData() {
         if (!this.playerData) { return; }
         this.enemiesEngaged = [];
-        this.playerData.prevMatch.sortedAttackers.sort((hit, prev) => hit.attacker.teamId - prev.attacker.teamId).map( hit => this.enemiesEngaged.push(hit.attacker.name) );
-        this.playerData.prevMatch.sortedHits.filter( hit => {
+        this.playerData.data.prevMatch.sortedAttackers.sort((hit, prev) =>
+            hit.attacker.teamId - prev.attacker.teamId).map( hit => this.enemiesEngaged.push(hit.attacker.name)
+            );
+        this.playerData.data.prevMatch.sortedHits.filter( hit => {
             if (!this.enemiesEngaged.includes(hit.victim.name)) {
                 this.enemiesEngaged.push(hit.victim.name);
             }
@@ -41,30 +44,39 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
     }
     getTotalDmg(el: ElementRef['nativeElement'], sortBy: string) {
         const name = el.attributes['data-enemy'].value;
-        let weapons: [];
+        let weapons: [] = [];
         if (sortBy === 'received') {
-            this.playerData.prevMatch.sortedAttackers.filter(attack => {
+            this.playerData.data.prevMatch.sortedAttackers.filter(attack => {
                 if (attack.attacker.name === name) {
-                    // console.log(attack.weapons);
+                    // console.log('attack', attack.weapons);
                     weapons = attack.weapons;
+                    // console.log('post attackers', weapons);
                 }
             });
         } else if (sortBy === 'dealt') {
-            this.playerData.prevMatch.sortedHits.filter(attack => {
+            this.playerData.data.prevMatch.sortedHits.filter(attack => {
                 if (attack.victim.name === name) {
                     // console.log('dealt attack', attack.weapons, name);
                     weapons = attack.weapons;
+                    // console.log('post hits', weapons);
+                    // console.log(weapons);
                 }
             });
         }
-        if ( !weapons ) {
+        if ( !weapons.length ) {
             return 0;
         } else {
-            console.log('weapon first hit', weapons);
+            // console.log('weapon first hit', weapons);
             let totalDmg: number;
             if (weapons.length > 1) {
-                totalDmg = weapons.reduce((weap, prev) => weap.totalDmg + prev.totalDmg);
+                // console.log(weapons.reduce((weap, prev) => weap.totalDmg + prev.totalDmg);
+                // )
+                totalDmg = weapons.reduce((weap, prev) => {
+                    // console.log('reduce', weap, prev);
+                    return weap.totalDmg + prev.totalDmg;
+                });
             } else {
+                // console.log(weapons);
                 totalDmg = weapons[0].totalDmg;
             }
             return totalDmg.toFixed(2);
@@ -78,7 +90,7 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
     //                 this.renderer.addClass(engagement.nativeElement, 'killer');
     //             }
     //         }
-        // );
+    // );
     // }
 
 }

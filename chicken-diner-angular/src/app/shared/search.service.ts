@@ -1,11 +1,13 @@
 import { environment as env } from '../../environments/environment';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PlayerData } from '../shared/player-data.model';
 
 @Injectable()
 export class SearchService {
     constructor(private router: Router, private route: ActivatedRoute) {  }
-    playerData: { playerName: string, prevMatch: { map: string } };
+    // playerData: { playerName: string, prevMatch: { map: string } };
+    playerData: PlayerData;
     loading = false;
 
     playerName: string = '';
@@ -21,7 +23,7 @@ export class SearchService {
 
     startPlayerSearch(data) {
         if (data.playerName === '' || this.loading) { return; }
-        this.playerData = null;
+        // this.playerData = null;
         this.playerName = data.playerName;
         this.shard = data.shard;
         this.playerSearch.emit({ loading: true, selectedPage: 'loading', matchId: 'None' });
@@ -33,7 +35,7 @@ export class SearchService {
                 if (json.error) {
                     throw json;
                 } else {
-                    this.playerData = json;
+                    this.playerData = new PlayerData(json);
                     this.matchId = json.prevMatch.matchId;
                     this.loading = false;
                     this.playerSearch.emit({
@@ -41,7 +43,7 @@ export class SearchService {
                         selectedPage: 'prev-match',
                         loading: this.loading
                     });
-                    return json;
+                    return new PlayerData(json);
                 }})
         // .then( json =>
         //     this.router.navigate([
@@ -89,7 +91,7 @@ export class SearchService {
                 .then(res => res.json())
                 .then(json => {
                     console.log('res', json);
-                    this.playerData.prevMatch = json;
+                    this.playerData.data.prevMatch = json;
                     this.loading = false;
                     this.matchId = data.matchId;
                     this.playerSearch.emit({

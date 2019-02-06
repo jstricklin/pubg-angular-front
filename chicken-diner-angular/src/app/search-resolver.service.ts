@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SearchService } from './shared/search.service';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { PlayerData } from './shared/player-data.model';
 
 @Injectable()
 export class SearchResolver implements Resolve<{}> {
