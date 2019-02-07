@@ -37,46 +37,47 @@
                         </ul>
                     </section>
                     <section style='width: 100%;' class='mb-2'>
+                        <app-match-info></app-match-info>
                         <app-engagements></app-engagements>
                     </section>
-                    <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedHits.length > 0'>
-                        <p class='section-title'>Enemies Hit </p>
-                        <ul>
-                            <li *ngFor='let hit of playerData.data.prevMatch.sortedHits'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-muted'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }}</p> <p *ngFor='let weapon of hit.weapons'>{{parseWeaponName.default[weapon.name]}} - {{weapon.totalDmg.toFixed(2)}}</p></li>
-                        </ul>
-                    </section>
-                    <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedKnocks.length > 0'>
-                        <p class='section-title'>Enemies Knocked: </p>
-                        <ul>
-                            <li *ngFor='let hit of playerData.data.prevMatch.sortedKnocks'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-warning'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }}</p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li>
-                        </ul>
-                    </section>
-                    <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedKills.length > 0'>
-                        <p class='section-title'>Enemies Killed: </p>
-                        <ul>
-                            <li *ngFor='let hit of playerData.data.prevMatch.sortedKills'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-success'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }} </p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li>
-                        </ul>
-                    </section>
-                    <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedAttackers.length > 0'>
-                        <p class='section-title'> Hit You: </p>
-                        <ul>
-                            <li class='mb-2' *ngFor='let hit of playerData.data.prevMatch.sortedAttackers'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.attacker.name)' class='player-link'><strong class='text-muted'>{{ hit.attacker.name }}</strong> <br> Team ID: {{ hit.attacker.teamId }}</p><p *ngFor='let weapon of hit.weapons'>{{parseWeaponName.default[weapon.name]}} - {{weapon.totalDmg.toFixed(2)}}</p></li>
-                        </ul>
-                    </section>
-                    <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedKnocker.length > 0'>
-                        <p class='section-title'> Knocked You: </p>
-                        <ul>
-                            <li *ngFor='let hit of playerData.data.prevMatch.sortedKnocker'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.name)' class='player-link'><strong class='text-danger'> {{ hit.name }}</strong> <br> Team ID: {{ hit.teamId }}</p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }} </p><p> Distance: {{ hit.distance.toFixed(2) }}</p></li>
-                        </ul>
-                    </section>
-                    <section *ngIf='playerData.data.prevMatch.killer'>
-                        <p class='section-title'> Killed You: </p>
-                        <ul>
-                            <li>
-                                <p (click)='onPlayerSearch(playerData.data.prevMatch.shard, playerData.data.prevMatch.killer.name)' class='player-link'><strong class='text-danger'>{{ playerData.data.prevMatch.killer.name }}</strong> <br> {{ playerData.data.prevMatch.killer.teamId }}</p><p>{{parseWeaponName.default[playerData.data.prevMatch.killer.weapon]}} - {{playerData.data.prevMatch.killer.damageReason}}</p>
-                            </li>
-                        </ul>
-                    </section>
+                    <!-- <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedHits.length > 0'> -->
+                    <!--     <p class='section-title'>Enemies Hit </p> -->
+                    <!--     <ul> -->
+                    <!--         <li *ngFor='let hit of playerData.data.prevMatch.sortedHits'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-muted'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }}</p> <p *ngFor='let weapon of hit.weapons'>{{parseWeaponName.default[weapon.name]}} - {{weapon.totalDmg.toFixed(2)}}</p></li> -->
+                    <!--     </ul> -->
+                    <!-- </section> -->
+                    <!-- <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedKnocks.length > 0'> -->
+                    <!--     <p class='section-title'>Enemies Knocked: </p> -->
+                    <!--     <ul> -->
+                    <!--         <li *ngFor='let hit of playerData.data.prevMatch.sortedKnocks'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-warning'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }}</p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li> -->
+                    <!--     </ul> -->
+                    <!-- </section> -->
+                    <!-- <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedKills.length > 0'> -->
+                    <!--     <p class='section-title'>Enemies Killed: </p> -->
+                    <!--     <ul> -->
+                    <!--         <li *ngFor='let hit of playerData.data.prevMatch.sortedKills'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.victim.name)' class='player-link'><strong class='text-success'>{{ hit.victim.name }}</strong> <br> Team ID: {{ hit.victim.teamId }} </p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }}</p><p>Distance: {{hit.distance.toFixed(2)}}</p></li> -->
+                    <!--     </ul> -->
+                    <!-- </section> -->
+                    <!-- <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedAttackers.length > 0'> -->
+                    <!--     <p class='section-title'> Hit You: </p> -->
+                    <!--     <ul> -->
+                    <!--         <li class='mb-2' *ngFor='let hit of playerData.data.prevMatch.sortedAttackers'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.attacker.name)' class='player-link'><strong class='text-muted'>{{ hit.attacker.name }}</strong> <br> Team ID: {{ hit.attacker.teamId }}</p><p *ngFor='let weapon of hit.weapons'>{{parseWeaponName.default[weapon.name]}} - {{weapon.totalDmg.toFixed(2)}}</p></li> -->
+                    <!--     </ul> -->
+                    <!-- </section> -->
+                    <!-- <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedKnocker.length > 0'> -->
+                    <!--     <p class='section-title'> Knocked You: </p> -->
+                    <!--     <ul> -->
+                    <!--         <li *ngFor='let hit of playerData.data.prevMatch.sortedKnocker'><p (click)='onPlayerSearch(playerData.data.prevMatch.shard, hit.name)' class='player-link'><strong class='text-danger'> {{ hit.name }}</strong> <br> Team ID: {{ hit.teamId }}</p><p> {{ parseWeaponName.default[hit.weapon] }} - {{ hit.damageReason }} </p><p> Distance: {{ hit.distance.toFixed(2) }}</p></li> -->
+                    <!--     </ul> -->
+                    <!-- </section> -->
+                    <!-- <section *ngIf='playerData.data.prevMatch.killer'> -->
+                    <!--     <p class='section-title'> Killed You: </p> -->
+                    <!--     <ul> -->
+                    <!--         <li> -->
+                    <!--             <p (click)='onPlayerSearch(playerData.data.prevMatch.shard, playerData.data.prevMatch.killer.name)' class='player-link'><strong class='text-danger'>{{ playerData.data.prevMatch.killer.name }}</strong> <br> {{ playerData.data.prevMatch.killer.teamId }}</p><p>{{parseWeaponName.default[playerData.data.prevMatch.killer.weapon]}} - {{playerData.data.prevMatch.killer.damageReason}}</p> -->
+                    <!--         </li> -->
+                    <!--     </ul> -->
+                    <!-- </section> -->
                 </aside>
                 <aside class="match-body col-md-4 lead text-right">
                     <section>

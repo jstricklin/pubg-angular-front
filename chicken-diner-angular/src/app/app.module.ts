@@ -13,6 +13,7 @@ import { SearchService } from './shared/search.service';
 import { SearchResolver } from './search-resolver.service';
 import { MatchResolver } from './match-resolver.service';
 import { EngagementsComponent } from './engagements/engagements.component';
+import { MatchInfoComponent } from './match-info/match-info.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EngagementsComponent } from './engagements/engagements.component';
     PlayerPageComponent,
     ErrorPageComponent,
     HomeComponent,
-    EngagementsComponent
+    EngagementsComponent,
+    MatchInfoComponent
   ],
   imports: [
     BrowserModule,
