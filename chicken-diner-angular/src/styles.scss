@@ -26,5 +26,11 @@ $theme-colors: (
 button.btn-light {
 
 }
+.player-link {
+    cursor: pointer;
+    :hover {
+        color: white;
+    }
+}
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

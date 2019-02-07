@@ -1,30 +1,34 @@
-import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, ViewChildren, AfterViewInit, ElementRef, Renderer2, OnChanges } from '@angular/core';
 import { SearchService } from '../shared/search.service';
 import { PlayerData } from '../shared/player-data.model';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-engagements',
     templateUrl: './engagements.component.html',
     styleUrls: ['./engagements.component.scss'],
 })
-export class EngagementsComponent implements OnInit, AfterViewInit {
+export class EngagementsComponent implements OnInit, AfterViewInit, OnChanges {
 
     @ViewChildren('engagementRow') engagements: ElementRef[];
 
-    constructor(private searchService: SearchService, private renderer: Renderer2) { }
+    constructor(private searchService: SearchService, private router: Router, private renderer: Renderer2) { }
     enemiesEngaged: string[] = ['Jane420', '666nightBlaDe333', 'senpaiDama'];
-    playerData: PlayerData;
+    @Input() playerData: PlayerData;
 
     ngOnInit() {
-        this.playerData = this.searchService.playerData;
+        // this.playerData = this.searchService.playerData;
         // console.log('playerData', this.playerData.data);
-        this.getEnemyData();
+        // this.getEnemyData();
 
-        this.searchService.playerSearch.subscribe(
-            (e) => {
-                this.playerData = this.searchService.playerData;
-                this.getEnemyData();
-            }
-        );
+        // this.searchService.playerSearch.subscribe(
+        //     (e) => {
+        //         this.playerData = this.searchService.playerData;
+        //         this.getEnemyData();
+        //     }
+        // );
+    }
+    ngOnChanges() {
+        this.getEnemyData();
     }
     ngAfterViewInit() {
         // this.getRowStyle();
@@ -82,6 +86,9 @@ export class EngagementsComponent implements OnInit, AfterViewInit {
             }
             return totalDmg.toFixed(2);
         }
+    }
+    onPlayerSearch(shardName: string, name: string) {
+        this.router.navigate(['shard', shardName, 'player', name]);
     }
     // getRowStyle() {
     //     this.engagements.map(

@@ -24,21 +24,15 @@
             </nav>
         </div>
         <div *ngIf='selectedLink === "prev-match"'class='row p-1 d-flex justify-content-center py-5 bg-clear'>
-            <div class='col-sm-10 col-12'>
-                <h1 class='lead text-light'>{{ time(playerData.data.prevMatch.matchTime).format('LLL') }}</h1>
-                <p class='lead text-muted '>{{matchId}}</p>
-            </div>
+            <!-- <div class='col-sm-10 col-12'> -->
+            <!--     <h1 class='lead text-light'>{{ time(playerData.data.prevMatch.matchTime).format('LLL') }}</h1> -->
+            <!--     <p class='lead text-muted '>{{matchId}}</p> -->
+            <!-- </div> -->
             <section class='match-stats py-3 d-flex justify-content-center flex-wrap mx-auto'>
                 <aside class="match-details col-sm-10 col-xs-12 lead text-left">
-                    <section *ngIf='playerData.data.prevMatch.teamMates.length > 0'>
-                        <p class='section-title'>Teammates </p>
-                        <ul>
-                            <li *ngFor='let teamMate of playerData.data.prevMatch.teamMates'><strong (click)='onPlayerSearch(playerData.data.prevMatch.shard, teamMate)' class='player-link text-primary'>{{ teamMate }}</strong></li>
-                        </ul>
-                    </section>
                     <section style='width: 100%;' class='mb-2'>
-                        <app-match-info></app-match-info>
-                        <app-engagements></app-engagements>
+                        <app-match-info [playerData]='playerData'></app-match-info>
+                        <app-engagements [playerData]='playerData'></app-engagements>
                     </section>
                     <!-- <section class='mb-2' *ngIf='playerData.data.prevMatch.sortedHits.length > 0'> -->
                     <!--     <p class='section-title'>Enemies Hit </p> -->
@@ -78,25 +72,6 @@
                     <!--         </li> -->
                     <!--     </ul> -->
                     <!-- </section> -->
-                </aside>
-                <aside class="match-body col-md-4 lead text-right">
-                    <section>
-                        <p class='section-title'>Map <br /> <strong class='text-muted'>{{ parseMapName.default[playerData.data.prevMatch.map] }}</strong></p>
-                        <p class='section-title'>Game Mode <br /> <strong class='text-muted'>{{ playerData.data.prevMatch.gameMode }}</strong></p>
-                        <p class='section-title'>Win Position <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.winPlace }}</strong></p>
-                        <p class='section-title'>Survival Time <br /> <strong class='text-muted'> {{ time.duration(playerData.data.prevMatch.matchStats.timeSurvived, 'seconds').humanize() }} {{ time.duration(playerData.data.prevMatch.matchStats.timeSurvived, 'seconds').seconds() }} seconds</strong></p>
-                        <p class='section-title'>Accuracy <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.accuracy }}%</strong></p>
-                        <p class='section-title'>Kills <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.kills }}</strong></p>
-                        <p class='section-title'>Knockdowns <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.DBNOs }}</strong></p>
-                        <p class='section-title'>Assists <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.assists }}</strong></p>
-                        <p class='section-title'>Damage Dealt <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.damageDealt.toFixed(2) }}</strong></p>
-                        <p class="section-title">Boosts Used <br />
-                        <strong class='text-muted'>{{ playerData.data.prevMatch.matchStats.boosts }}</strong></p>
-                        <p class="section-title">Times Healed <br />
-                        <strong class='text-muted'>{{ playerData.data.prevMatch.matchStats.heals }}</strong></p>
-                        <p *ngIf='playerData.data.prevMatch.gameMode !== "solo"' class="section-title">Revives <br />
-                        <strong class='text-muted'>{{ playerData.data.prevMatch.matchStats.revives }}</strong></p>
-                    </section>
                 </aside>
             </section>
         </div>
