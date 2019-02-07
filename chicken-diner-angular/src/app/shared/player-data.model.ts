@@ -4,6 +4,7 @@ export class PlayerData {
         prevMatch: {
             map: string,
             accuracy: number,
+            matchId: string;
             teamMates: string[],
             sortedHits: {
                 victim: {
