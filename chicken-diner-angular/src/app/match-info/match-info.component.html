@@ -5,7 +5,7 @@
     </div>
     <div class='col-sm-2 col-4'>
         <div class="circle border border-0 bg-dark rounded p-2 d-flex align-items-center justify-content-center">
-        <p class='text-muted text-center'>Map <br /> <strong class='text-muted'>{{ parseMapName.default[playerData.data.prevMatch.map] }}</strong></p>
+        <p *ngIf='playerData' class='text-muted text-center'>Map <br /> <strong class='text-muted'>{{ parseMapName.default[playerData.data.prevMatch.map] }}</strong></p>
     </div>
     </div>
     <div class='col-sm-2 col-4'>

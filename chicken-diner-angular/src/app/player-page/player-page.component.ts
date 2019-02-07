@@ -5,7 +5,7 @@ import * as mapName from '../../assets/utils/dictionaries/telemetry/mapName.json
 import * as itemId from '../../assets/utils/dictionaries/telemetry/item/itemId.json';
 import * as dmgCategory from '../../assets/utils/dictionaries/telemetry/damageTypeCategory.json';
 // import { Events } from '../shared/search-event.model';
-const miramarBG = '../../assets/images/miramar-bg-01.png';
+// const miramarBG = '../../assets/images/miramar-bg-01.png';
 import { SearchService } from '../shared/search.service';
 import { ActivatedRoute, Params, Data, Router } from '@angular/router';
 import { EngagementsComponent } from '../engagements/engagements.component';

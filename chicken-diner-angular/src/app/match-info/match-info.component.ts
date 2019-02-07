@@ -30,5 +30,4 @@ export class MatchInfoComponent implements OnInit {
     onPlayerSearch(shardName: string, name: string) {
         this.router.navigate(['shard', shardName, 'player', name]);
     }
-
 }

@@ -26,8 +26,11 @@
         <div class="col-3 text-left m-0">
             <p class='lead player-link' (click)='onPlayerSearch(playerData.data.prevMatch.shard, enemy)'>{{ enemy }} </p>
         </div>
-        <div class="col-3 text-center m-0">
+        <div class="col-3 text-center m-0 d-flex">
             <p class='text-danger mr-2' *ngIf='playerData.data.prevMatch.killer !== null && enemy === playerData.data.prevMatch.killer.name'>K</p>
+            <p class='text-success mr-2'>K</p>
+            <p class='text-warning mr-2'>DBNO</p>
+            <p class='text-danger mr-2'>DBNO</p>
         </div>
         <div class="text-center col-3 m-0">
             <p class='lead'>{{ getTotalDmg(engagementRow, 'received') }} </p>
@@ -35,5 +38,8 @@
         <div class="text-center col-3 m-0">
             <p class='lead'>{{ getTotalDmg(engagementRow, 'dealt') }} </p>
         </div>
+    </div>
+    <div class='col-12'>
+        
     </div>
 </div>

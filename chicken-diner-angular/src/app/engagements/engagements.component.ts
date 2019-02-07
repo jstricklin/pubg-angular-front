@@ -16,23 +16,9 @@ export class EngagementsComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() playerData: PlayerData;
 
     ngOnInit() {
-        // this.playerData = this.searchService.playerData;
-        // console.log('playerData', this.playerData.data);
-        // this.getEnemyData();
-
-        // this.searchService.playerSearch.subscribe(
-        //     (e) => {
-        //         this.playerData = this.searchService.playerData;
-        //         this.getEnemyData();
-        //     }
-        // );
     }
     ngOnChanges() {
         this.getEnemyData();
-    }
-    ngAfterViewInit() {
-        // this.getRowStyle();
-        // this.renderer.setStyle(this.engagementRow.nativeElement, 'background-color', 'red');
     }
     getEnemyData() {
         if (!this.playerData) { return; }
