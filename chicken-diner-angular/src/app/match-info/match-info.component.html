@@ -4,18 +4,18 @@
         <p class='text-dark '>ID: {{matchId}}</p>
     </div>
     <div class='col-sm-2 col-4'>
-        <div class="circle border border-0 bg-dark rounded p-2 d-flex align-items-center justify-content-center">
-            <p *ngIf='playerData' class='text-muted text-center'>Map <br /> <strong class='text-muted'>{{ parseMapName.default[playerData.data.prevMatch.map] }}</strong></p>
+        <div class="circle border border-0 rounded p-2 d-flex align-items-center justify-content-center">
+            <p *ngIf='playerData' class='text-muted text-center'><strong class='text-muted'>{{ parseMapName.default[playerData.data.prevMatch.map] }}</strong></p>
         </div>
     </div>
     <div class='col-sm-2 col-4'>
-        <div class="circle border border-0 bg-dark rounded p-2 d-flex align-items-center justify-content-center">
-            <p class='text-muted text-center'>Game Mode <br /> <strong class='text-muted'>{{ playerData.data.prevMatch.gameMode }}</strong></p>
+        <div class="circle border border-0 rounded p-2 d-flex align-items-center justify-content-center">
+            <p class='text-muted text-center'><strong class='text-muted'>{{ playerData.data.prevMatch.gameMode }}</strong></p>
         </div>
     </div>
     <div class='col-sm-2 col-4'>
-        <div class="circle border border-0 bg-dark rounded p-2 d-flex align-items-center justify-content-center">
-            <p class='text-muted text-center'>Win Position <br /> <strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.winPlace }}</strong></p>
+        <div class="circle border border-0 rounded p-2 d-flex align-items-center justify-content-center">
+            <p class='text-muted text-center'><strong class='text-muted'> {{ playerData.data.prevMatch.matchStats.winPlace }}{{ getSuffix(playerData.data.prevMatch.matchStats.winPlace) }} Place</strong></p>
         </div>
     </div>
 </div>

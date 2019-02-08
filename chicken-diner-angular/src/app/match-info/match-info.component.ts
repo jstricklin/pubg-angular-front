@@ -21,6 +21,7 @@ export class MatchInfoComponent implements OnInit {
     selectedLink = 'prev-match';
     matchId = '';
     loading = false;
+    suffix: string;
 
   constructor(private searchService: SearchService, private router: Router) { }
 
@@ -29,5 +30,11 @@ export class MatchInfoComponent implements OnInit {
   }
     onPlayerSearch(shardName: string, name: string) {
         this.router.navigate(['shard', shardName, 'player', name]);
+    }
+    getSuffix(num) {
+        return num === 1 ? 'st'
+            :   num === 2 ? 'nd'
+            :   num === 3 ? 'rd'
+            : 'th';
     }
 }

@@ -3,9 +3,9 @@
     margin: 0;
 }
 div.match-item {
-    &:nth-of-type(2n) {
-        background-color: rgb(49, 53, 57);
-    }
+    // &:nth-of-type(2n) {
+    //     background-color: rgb(49, 53, 57);
+    // }
     padding: 15px;
     display: flex;
     justify-content: center;
@@ -35,6 +35,7 @@ div.match-item {
     }
 }
 .circle {
+    background-color: rgb(49, 53, 57);
     margin-top: 1rem;
     margin-bottom: 1rem;
     min-height: 75px;
