@@ -10,13 +10,13 @@ div.match-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 150px;
+    min-width: 100px;
     background: rgb(62, 65, 67);
     margin: 5px;
     border-radius: 5px;
     &.group {
         // display: block;
-        flex-direction: column;
+        // flex-direction: column;
         text-align: center;
         padding-top: auto;
         p:not(.section-title) {
@@ -24,6 +24,9 @@ div.match-item {
             margin-right: 10px;
         }
     }
+}
+.match-body {
+    background: rgba(53,58,63, 0.60);
 }
 .player-link {
     cursor: pointer;
@@ -39,6 +42,8 @@ div.match-item {
 }
 p {
     margin: 0;
+    margin-right: 1em;
+    margin-left: 1em;
     font-size: 8pt;
 }
 .match-details .section-title {
