@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChildren, AfterViewInit, ElementRef, Renderer2, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, ViewChildren, ElementRef, Renderer2, OnChanges } from '@angular/core';
 import { SearchService } from '../shared/search.service';
 import { PlayerData } from '../shared/player-data.model';
 import { Router } from '@angular/router';
@@ -7,13 +7,18 @@ import { Router } from '@angular/router';
     templateUrl: './engagements.component.html',
     styleUrls: ['./engagements.component.scss'],
 })
-export class EngagementsComponent implements OnInit, AfterViewInit, OnChanges {
+export class EngagementsComponent implements OnInit, OnChanges {
 
     @ViewChildren('engagementRow') engagements: ElementRef[];
 
     constructor(private searchService: SearchService, private router: Router, private renderer: Renderer2) { }
-    enemiesEngaged: string[] = ['Jane420', '666nightBlaDe333', 'senpaiDama'];
+    enemiesEngaged: string[] = [];
+    enemiesKilled: string[] = [];
+    knocks: string[] = [];
+    knockers: string[] = [];
     @Input() playerData: PlayerData;
+    hideDetails = true;
+    selectedName: string;
 
     ngOnInit() {
     }
@@ -23,9 +28,17 @@ export class EngagementsComponent implements OnInit, AfterViewInit, OnChanges {
     getEnemyData() {
         if (!this.playerData) { return; }
         this.enemiesEngaged = [];
+        this.knocks = [];
+        this.enemiesKilled = [];
+        this.knockers = [];
+
+        this.playerData.data.prevMatch.sortedKnocks.map(knock => this.knocks.push(knock.victim.name));
+        this.playerData.data.prevMatch.sortedKnocker.map(knock => this.knockers.push(knock.name));
+        this.playerData.data.prevMatch.sortedKills.map(kill => this.enemiesKilled.push(kill.victim.name));
         this.playerData.data.prevMatch.sortedAttackers.sort((hit, prev) =>
-            hit.attacker.teamId - prev.attacker.teamId).map( hit => this.enemiesEngaged.push(hit.attacker.name)
-            );
+            hit.attacker.teamId - prev.attacker.teamId).map( hit => {
+                this.enemiesEngaged.push(hit.attacker.name);
+            });
         this.playerData.data.prevMatch.sortedHits.filter( hit => {
             if (!this.enemiesEngaged.includes(hit.victim.name)) {
                 this.enemiesEngaged.push(hit.victim.name);
@@ -38,18 +51,13 @@ export class EngagementsComponent implements OnInit, AfterViewInit, OnChanges {
         if (sortBy === 'received') {
             this.playerData.data.prevMatch.sortedAttackers.filter(attack => {
                 if (attack.attacker.name === name) {
-                    // console.log('attack', attack.weapons);
                     weapons = attack.weapons;
-                    // console.log('post attackers', weapons);
                 }
             });
         } else if (sortBy === 'dealt') {
             this.playerData.data.prevMatch.sortedHits.filter(attack => {
                 if (attack.victim.name === name) {
-                    // console.log('dealt attack', attack.weapons, name);
                     weapons = attack.weapons;
-                    // console.log('post hits', weapons);
-                    // console.log(weapons);
                 }
             });
         }
@@ -70,21 +78,14 @@ export class EngagementsComponent implements OnInit, AfterViewInit, OnChanges {
                 // console.log(weapons);
                 totalDmg = weapons[0].totalDmg;
             }
-            return totalDmg.toFixed(2);
+            return totalDmg.toFixed(1);
         }
     }
     onPlayerSearch(shardName: string, name: string) {
         this.router.navigate(['shard', shardName, 'player', name]);
     }
-    // getRowStyle() {
-    //     this.engagements.map(
-    //         engagement => {
-    //             const name = engagement.nativeElement.attributes['data-enemy'].value;
-    //             if (this.playerData.prevMatch.killer.name === name) {
-    //                 this.renderer.addClass(engagement.nativeElement, 'killer');
-    //             }
-    //         }
-    // );
-    // }
-
+    toggleDetails(name) {
+        this.selectedName = name;
+        setTimeout(() => { this.selectedName = ''; }, 50);
+    }
 }

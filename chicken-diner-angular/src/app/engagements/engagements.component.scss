@@ -1,7 +1,12 @@
+$small: 575px;
+$medium: 875px;
 .main-header {
     h3 {
         font-weight: 300;
     }
+}
+h3 {
+    margin: 0;
 }
 hr {
     background-color: white;
@@ -42,4 +47,10 @@ p {
 }
 .kill {
 
+}
+.engagement-details {
+    @media screen and (min-width:$medium) {
+        display: none;
+    }
+    display: hidden;
 }

@@ -42,8 +42,23 @@ export class PlayerData {
                 },
                 weapons: [],
             }[],
-            sortedKnocks: {}[],
-            sortedKnocker: {}[],
+            sortedKnocks: {
+                victim: {
+                name: string,
+                teamId: number,
+
+                }
+                weapon: string,
+                damageReason: string,
+                distance: number,
+            }[],
+            sortedKnocker: {
+                name: string,
+                teamId: number,
+                weapon: string,
+                damageReason: string,
+                distance: number,
+            }[],
             matchStats: {
                 winPlace: number,
                 DBNOs: number,

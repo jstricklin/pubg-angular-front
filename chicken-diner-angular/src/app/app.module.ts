@@ -14,6 +14,7 @@ import { SearchResolver } from './search-resolver.service';
 import { MatchResolver } from './match-resolver.service';
 import { EngagementsComponent } from './engagements/engagements.component';
 import { MatchInfoComponent } from './match-info/match-info.component';
+import { EngagementDetailsComponent } from './engagements/engagement-details/engagement-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatchInfoComponent } from './match-info/match-info.component';
     ErrorPageComponent,
     HomeComponent,
     EngagementsComponent,
-    MatchInfoComponent
+    MatchInfoComponent,
+    EngagementDetailsComponent
   ],
   imports: [
     BrowserModule,
