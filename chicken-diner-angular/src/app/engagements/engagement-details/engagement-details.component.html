@@ -7,17 +7,17 @@
             <p><strong class='text-muted'>{{ killData.damageReason }}</strong></p>
             <p><strong class='text-muted'>{{ (killData.distance*.10000).toFixed(1) }}m</strong></p>
         </div>
+        <div class='col-12 d-flex justify-content-around border border-danger mb-2 p-1 rounded align-items-center' *ngIf='playerData.data.prevMatch.killer.name === enemyName'>
+            <h3 class='text-danger'>Killed Player</h3>
+            <p class='text-muted'><strong> {{parseWeaponName.default[playerData.data.prevMatch.killer.weapon]}}</strong></p>
+            <p class='text-muted'><strong>{{ playerData.data.prevMatch.killer.damageReason }}</strong></p>
+            <p class='text-muted'><strong>{{ (playerData.data.prevMatch.killer.distance * .10000).toFixed(1) }}m</strong></p>
+        </div>
         <div *ngIf="knockerData" class='col-12 d-flex justify-content-around border border-danger mb-2 p-1 rounded align-items-center'>
             <h3 class='text-danger'>Knocked</h3>
             <p><strong class='text-muted'>{{parseWeaponName.default[knockerData.weapon]}}</strong></p>
             <p><strong class='text-muted'>{{ knockerData.damageReason }}</strong></p>
             <p><strong class='text-muted'>{{ (knockerData.distance*.10000).toFixed(1) }}m</strong></p>
-        </div>
-        <div class='col-12 d-flex justify-content-around border border-danger mb-2 p-1 rounded align-items-center' *ngIf='playerData.data.prevMatch.killer.name === enemyName'>
-            <h3 class='text-danger'>Killed Player</h3>
-            <p class='text-muted'><strong> {{parseWeaponName.default[playerData.data.prevMatch.killer.weapon]}}</strong></p>
-            <p>{{ playerData.data.prevMatch.killer.damageReason }}</p>
-            <p>{{ (playerData.data.prevMatch.killer.distance * .10000).toFixed(1) }}m</p>
         </div>
         <div *ngIf="knockData" class='col-12 d-flex justify-content-around border border-warning mb-2 p-1 rounded align-items-center'>
             <h3 class='text-warning'>DBNO</h3>
