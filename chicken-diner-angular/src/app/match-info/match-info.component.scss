@@ -15,8 +15,10 @@ div.match-item {
     margin: 5px;
     border-radius: 5px;
     &.group {
-        display: block;
+        // display: block;
+        flex-direction: column;
         text-align: center;
+        padding-top: auto;
         p:not(.section-title) {
             margin-left: 10px;
             margin-right: 10px;
@@ -37,7 +39,7 @@ div.match-item {
 }
 p {
     margin: 0;
-    font-size: 10pt;
+    font-size: 8pt;
 }
 .match-details .section-title {
     margin-bottom: 5px;
@@ -57,6 +59,6 @@ li {
     list-style: none;
 }
 strong {
-    font-size: 10pt;
+    font-size: 8pt;
     font-weight: 600;
 }
